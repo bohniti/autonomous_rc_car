@@ -30,3 +30,5 @@
 * Wie findet die Kommunikation statt? (fester Intervall, ...)
 * Welche Meilensteine sollen erreicht werden?
 * Wie lange haben wir Zeit?
+
+## Janni is ein huan
