@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>IT-Anwendung</title>
+        <link href="css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body class="homepage">
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href=".">IT-Anwendung</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                <a href=".">Getting started</a>
+                            </li>
+                            <li >
+                                <a href="project/">Projekt</a>
+                            </li>
+                            <li >
+                                <a href="about/">Team</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="disabled">
+                                <a rel="next" >
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="project/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#autonomes-fahren-mittels-neuronaler-netze">Autonomes fahren mittels neuronaler Netze</a></li>
+            <li><a href="#idee">Idee</a></li>
+            <li><a href="#vorgehensweise">Vorgehensweise</a></li>
+            <li><a href="#losungsansatz">Lösungsansatz</a></li>
+            <li><a href="#motivation">Motivation</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="autonomes-fahren-mittels-neuronaler-netze">Autonomes fahren mittels neuronaler Netze</h1>
+<h2 id="idee">Idee</h2>
+<p>Unser Ziel ist es ein Spielzeugauto so umzubauen und zu programmieren, dass es eine vorgefertigte Strecke selbständig fahren kann. Die Fahrbahn soll mit Klebeband auf den Boden beliebig aufgeklebt werden können. Das Auto lernt mit und soll seine Rundenzeit nach und nach verbessern.</p>
+<h2 id="vorgehensweise">Vorgehensweise</h2>
+<p>Wir verwenden ein RaspberryPI und ein neuronales Netz mit einem Deeplearning-Verfahren, damit die Software lernt innerhalb der Strecke zu fahren und vermeintlichen Hinternissen ausweicht.  Es soll die Rundenzeit aufzeichnen und durch kluges Verhalten erkennen, ob es sich links, rechts oder geradeaus halten muss, damit die Rundenzeit besser wird.</p>
+<h2 id="losungsansatz">Lösungsansatz</h2>
+<p>Das neuronale Netz wollen wir mit Python programmieren. Für das Deeplearning ist eine Technologie wie Keras gut geeignet. Wir bauen das Auto so um, dass es mithilfe einer Erweiterung der Raspberry PI-„Servolenkung“ automatisch beschleunigt bzw. gebremst werden kann. Das Angebot der Fakultät, uns finanziell zu unterstützen nehmen wir dankbar an, wenn Sie sich für unser Projekt entscheiden. Wir rechnen mit einem Materialaufwand von ungefähr 150 Euro.</p>
+<h2 id="motivation">Motivation</h2>
+<p>Wir drei sind uns einig, dass es keine leichte Aufgabe wird dieses Projekt umzusetzen. Dennoch sind wir überzeugt, dass wir die wir die nötigen Vorraussetzungen mitbringen, welche ein erfolgreichem Abschluss erfordert. Wir sind organisiert, haben den nötigen technischen Background und brennen darauf mehr zu erfahren und zu lernen. Alle im Team sind begeistert von der Idee. Selbstverständlich sind wir offen für Ihre Vorschläge und möglichen Fragen. </p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+        <script src="search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.0.4
+Build Date UTC : 2019-03-28 11:21:27
+-->
