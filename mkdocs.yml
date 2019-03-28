@@ -1,0 +1,5 @@
+site_name: IT-Anwendung
+pages:
+- Getting started: 'index.md'
+- Projekt: 'projekt.md'
+- Team: 'about.md'
