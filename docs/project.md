@@ -11,6 +11,7 @@
 ###Hilfe zur Dokumentation
 * super einfache [Anleitung](https://rogerdudler.github.io/git-guide/index.de.html) und Übersicht für Git
 * [Markdown Syntax](Markdown Syntax)
+* [Noch mehr Markdown](https://support.squarespace.com/hc/de/articles/206543587-Markdown-Spickzettel)
 
 ##Initialisierung
 
