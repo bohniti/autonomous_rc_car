@@ -1,4 +1,4 @@
-# Autonomes fahren mittels neuronaler Netze
+# RC Car - Autonomes fahren mittels neuronaler Netze
 
 ##Idee
 Unser Ziel ist es ein Spielzeugauto so umzubauen und zu programmieren, dass es eine vorgefertigte Strecke selbständig fahren kann. Die Fahrbahn soll mit Klebeband auf den Boden beliebig aufgeklebt werden können. Das Auto lernt mit und soll seine Rundenzeit nach und nach verbessern.
