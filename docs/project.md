@@ -61,7 +61,7 @@
 <br/><br/>
 ##Kameramodul und Webserver
 
-* ![Alt-Text](/data/fickschnitzel2.jpg)
+* ![Alt-Text](/img/camera_works.jpg)
     * sfsdfs
 
 ##Steuerung
