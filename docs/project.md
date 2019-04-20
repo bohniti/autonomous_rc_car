@@ -28,22 +28,43 @@
 [PDF Version](/data/kick_off.pdf)
 
 * Wie welches Ergebnis soll erzielt werden?
-   * Bericht mit 20 Seiten (Ein gekennzeichneter Abschnitt pro Mitglied)
-   * Vortrag über eine Stunde (Termin selbstständig im WS mit Prof. Trommler vereinbaren)
+<br/><br/>
+    * Bericht mit 20 Seiten (Ein gekennzeichneter Abschnitt pro Mitglied)
+    * Vortrag über eine Stunde (Termin selbstständig im WS mit Prof. Trommler vereinbaren)
+<br/><br/>
 * Wie wird die Note gebildet?
-   * Auf den jeweiligen Berichtsabschnitt (vor allem bei großen qualitativen Unterschieden)
-   * Vortag
-   * Gesamtprojektfortschritt
+<br/><br/>
+    * Auf den jeweiligen Berichtsabschnitt (vor allem bei großen qualitativen Unterschieden)
+    * Vortag
+    * Gesamtprojektfortschritt
+<br/><br/>
 * Welche Anforderungen gibt es, neben den erwarteten Ergebnissen?
-Hard- und Software bis zum Wintersemester fertig, Bericht bis zum Vortag fertig.
+<br/><br/>
+    * Hard- und Software bis zum Wintersemester fertig, Bericht bis zum Vortag fertig.
+<br/><br/>
 * Wie findet die Kommunikation statt? (fester Intervall, ...)
-  * Mögliche Sprechstunde Donnerstag um 08:45
+<br/><br/>
+    * Mögliche Sprechstunde Donnerstag um 08:45
+<br/><br/>
 * Welche Meilensteine sollen erreicht werden?
-   1. Supervised learning
-   2. Reinforcment learning, für mindestens einen Parameter
+<br/><br/>
+    1. Supervised learning
+    2. Reinforcment learning, für mindestens einen Parameter
+<br/><br/>
 * Wie lange haben wir Zeit?
-   * Allgemein: 14.03.2020
+<br/><br/>
+    * Allgemein: 14.03.2020
+<br/><br/>
 * Wo arbeiten wir?
-   * Medienlabor
+<br/><br/>
+    * Medienlabor
+<br/><br/>
+##Kameramodul und Webserver
 
-###
+* ![Alt-Text](/data/fickschnitzel2.jpg)
+    * sfsdfs
+
+##Steuerung
+
+* ![Alt-Text](/data/fickschnitzel2.jpg)
+    * sfsdfs
