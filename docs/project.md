@@ -61,10 +61,10 @@
 
 ##Kameramodul und Webserver
 
-* ![Alt-Text](camera_works.jpg)
-    * sfsdfs
+![Alt-Text](camera_works.jpg)
+* Über die [IP-Adresse 192.168.2.125  und den Port 8887](192.168.2.125:8887) kann ein Webinterface aufgerufen werden, über dieses kann das Auto später bewegt werden und die Kamera eingesehen werden.
 
 ##Steuerung
 
-* ![Alt-Text](/data/fickschnitzel2.jpg)
+* Das Auto kann über das [Webinterface](192.168.2.125:8887) gesteuert werden. Ist aber noch sehr schlecht kalibriert.
     * sfsdfs
