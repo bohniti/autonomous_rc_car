@@ -28,40 +28,40 @@
 [PDF Version](/data/kick_off.pdf)
 
 * Wie welches Ergebnis soll erzielt werden?
-<br/><br/>
+
     * Bericht mit 20 Seiten (Ein gekennzeichneter Abschnitt pro Mitglied)
     * Vortrag über eine Stunde (Termin selbstständig im WS mit Prof. Trommler vereinbaren)
-<br/><br/>
+
 * Wie wird die Note gebildet?
-<br/><br/>
+
     * Auf den jeweiligen Berichtsabschnitt (vor allem bei großen qualitativen Unterschieden)
     * Vortag
     * Gesamtprojektfortschritt
-<br/><br/>
+
 * Welche Anforderungen gibt es, neben den erwarteten Ergebnissen?
-<br/><br/>
+
     * Hard- und Software bis zum Wintersemester fertig, Bericht bis zum Vortag fertig.
-<br/><br/>
+
 * Wie findet die Kommunikation statt? (fester Intervall, ...)
-<br/><br/>
+
     * Mögliche Sprechstunde Donnerstag um 08:45
-<br/><br/>
+
 * Welche Meilensteine sollen erreicht werden?
-<br/><br/>
+
     1. Supervised learning
     2. Reinforcment learning, für mindestens einen Parameter
-<br/><br/>
+
 * Wie lange haben wir Zeit?
-<br/><br/>
+
     * Allgemein: 14.03.2020
-<br/><br/>
+
 * Wo arbeiten wir?
-<br/><br/>
+
     * Medienlabor
-<br/><br/>
+
 ##Kameramodul und Webserver
 
-* ![Alt-Text](/img/camera_works.jpg)
+* ![Alt-Text](camera_works.jpg)
     * sfsdfs
 
 ##Steuerung
