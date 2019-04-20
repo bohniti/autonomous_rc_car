@@ -1,9 +1,10 @@
-#Tagebuch
+#Arbeitszeit
 
-##19.04.2019 - 20.04.2019
 
-| Tables        | Are           | Cool  |
+| Thema         | Datum         | Zeit  |
 | ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
+| * Camera Modul installiert   | 19.04.201 | 6 Stunden |
+  ** sfsdfsfsfsdfsfsfs
+
 | col 2 is      | centered      |   $12 |
 | zebra stripes | are neat      |    $1 |
