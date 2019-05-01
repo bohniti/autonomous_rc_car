@@ -47,7 +47,7 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li >
-                                <a href="..">Getting started</a>
+                                <a href="../getting-start/">Initialisierung</a>
                             </li>
                             <li class="active">
                                 <a href="./">Projekt</a>
@@ -70,7 +70,7 @@
                             </a>
                         </li>
                             <li >
-                                <a rel="next" href="..">
+                                <a rel="next" href="../getting-start/">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -87,91 +87,24 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#projekt">Projekt</a></li>
-            <li><a href="#dokumentation">Dokumentation</a></li>
-            <li><a href="#initialisierung">Initialisierung</a></li>
+        <li class="main active"><a href="#das-rc-auto-vorbereiten">Das RC Auto vorbereiten</a></li>
+            <li><a href="#der-servomotor">Der Servomotor</a></li>
             <li><a href="#kameramodul-und-webserver">Kameramodul und Webserver</a></li>
             <li><a href="#steuerung">Steuerung</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="projekt">Projekt</h1>
-<h2 id="dokumentation">Dokumentation</h2>
-<ol>
-<li>Installiere Python, Git und mkdocs</li>
-<li>Klone das <a href="https://github.com/bohniti/it_projekt_dokumentation">Repository</a></li>
-<li>Bearbeite die Dokumentation, indem du die .md Dateien unter /docs änderst (Text) oder die mkdocs.yml anpasst (Menü, Einstellungen).</li>
-<li>Baue die Webseite mit dem Befehl mkdocs build</li>
-<li>Push deine Änderungen in das Repository und aktuallisiere die Online-Dokumentation mit mkdocs gh-deploy</li>
-<li>Rufe die aktuelle Version der <a href="https://bohniti.github.io/it-projekt">Dokumentation</a> auf.</li>
-</ol>
-<h3 id="hilfe-zur-dokumentation">Hilfe zur Dokumentation</h3>
-<ul>
-<li>super einfache <a href="https://rogerdudler.github.io/git-guide/index.de.html">Anleitung</a> und Übersicht für Git</li>
-<li><a href="Markdown Syntax">Markdown Syntax</a></li>
-<li><a href="https://support.squarespace.com/hc/de/articles/206543587-Markdown-Spickzettel">Noch mehr Markdown</a></li>
-</ul>
-<h2 id="initialisierung">Initialisierung</h2>
-<h3 id="fragen-an-die-mitglieder-deadline-kick-off-am-040419">Fragen an die Mitglieder (DeadLine: Kick-Off am 04.04.19):</h3>
-<ul>
-<li>Wie funktioniert ein neuronales Netz grundlegend?</li>
-<li>Welche Arten von neuronalen Netzen gibt es?</li>
-<li>Wodruch unterscheiden sich die neuronalen Netzte von einander?</li>
-<li>Welche Netz-Art eignet sich am besten für das Projekt?</li>
-<li>Was ist ein Layer, eine Epoche usw.?</li>
-<li>Welche Technologie (Netzart, API, Framework) wird von DonkeyCar verwendet?</li>
-</ul>
-<h3 id="kick-off-040419">Kick-Off (04.04.19):</h3>
-<p><a href="/data/kick_off.pdf">PDF Version</a></p>
-<ul>
-<li>
-<p>Wie welches Ergebnis soll erzielt werden?</p>
-<ul>
-<li>Bericht mit 20 Seiten (Ein gekennzeichneter Abschnitt pro Mitglied)</li>
-<li>Vortrag über eine Stunde (Termin selbstständig im WS mit Prof. Trommler vereinbaren)</li>
-</ul>
-</li>
-<li>
-<p>Wie wird die Note gebildet?</p>
-<ul>
-<li>Auf den jeweiligen Berichtsabschnitt (vor allem bei großen qualitativen Unterschieden)</li>
-<li>Vortag</li>
-<li>Gesamtprojektfortschritt</li>
-</ul>
-</li>
-<li>
-<p>Welche Anforderungen gibt es, neben den erwarteten Ergebnissen?</p>
-<ul>
-<li>Hard- und Software bis zum Wintersemester fertig, Bericht bis zum Vortag fertig.</li>
-</ul>
-</li>
-<li>
-<p>Wie findet die Kommunikation statt? (fester Intervall, ...)</p>
-<ul>
-<li>Mögliche Sprechstunde Donnerstag um 08:45</li>
-</ul>
-</li>
-<li>
-<p>Welche Meilensteine sollen erreicht werden?</p>
-<ol>
-<li>Supervised learning</li>
-<li>Reinforcment learning, für mindestens einen Parameter</li>
-</ol>
-</li>
-<li>
-<p>Wie lange haben wir Zeit?</p>
-<ul>
-<li>Allgemein: 14.03.2020</li>
-</ul>
-</li>
-<li>
-<p>Wo arbeiten wir?</p>
-<ul>
-<li>Medienlabor</li>
-</ul>
-</li>
-</ul>
+<h1 id="das-rc-auto-vorbereiten">Das RC Auto vorbereiten</h1>
+<p>Das Ferngesteuerte Auto <em>sollte</em> ein 1:10 Modelauto sein. Es existieren auch Spielzeug-Ferngesteuerte Autos, allerdings wird deren
+Motor <strong>nicht</strong> nicht von einem <strong>Servomotor</strong> gesteuert. Um ein RC Auto mit einem Raspberry Pi möglichst einfach zu verbinden.
+So ein Spielzeug Auto hat 4Pins mit einem servo-ähnlichen Verhalten. Es wäre prinzipiell möglich auch das mit einem RaspberryPI
+zu verbinden, allerdings ist so etwas dann eher im Elektrotechnik Fachgebiet.</p>
+<h2 id="der-servomotor">Der Servomotor</h2>
+<p>Der Servomotor eines Modellautos hat 3 Pins. Die 3 Pins sind
+* Versorgungspannung
+* Masse
+* Signal/PWM</p>
 <h2 id="kameramodul-und-webserver">Kameramodul und Webserver</h2>
 <p><img alt="Alt-Text" src="../camera_works.jpg" />
 * Über die <a href="http://192.168.2.125:8887">IP-Adresse 192.168.2.125  und den Port 8887</a> kann ein Webinterface aufgerufen werden, über dieses kann das Auto später bewegt werden und die Kamera eingesehen werden.</p>
