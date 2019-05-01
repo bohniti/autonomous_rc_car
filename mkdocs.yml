@@ -1,6 +1,6 @@
 site_name: IT-Anwendung
 nav:
-- Getting started: 'index.md'
+- Initialisierung: 'getting-start.md'
 - Projekt: 'project.md'
 - Team: 'about.md'
 - Termine: 'termine.md'
