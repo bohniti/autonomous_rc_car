@@ -5,11 +5,15 @@ So ein Spielzeug Auto hat 4Pins mit einem servo-ähnlichen Verhalten. Es wäre p
 zu verbinden, allerdings ist so etwas dann eher im Elektrotechnik Fachgebiet.
 
 ## Der Servomotor
-
+Der Servomotor eines Modellautos hat 3 Pins. Die 3 Pins sind
 
 * Versorgungspannung
 * Masse
 * Signal/PWM
+
+
+
+
 
 ##Kameramodul und Webserver
 
