@@ -1,6 +1,6 @@
 #Das RC Auto vorbereiten
-Das Ferngesteuerte Auto *sollte* ein 1:10 Modelauto sein. Es existieren auch Spielzeug-Ferngesteuerte Autos, allerdings wird deren
-Motor **nicht** nicht von einem **Servomotor** gesteuert. Um ein RC Auto mit einem Raspberry Pi möglichst einfach zu verbinden.
+Das Ferngesteuerte Auto *sollte* ein 1:10 Modellauto sein. Es existieren auch Ferngesteuerte Autos im Spielzeug Segment, allerdings ist deren
+Motor **kein Servomotor**. Um ein RC Auto mit einem Raspberry Pi möglichst einfach zu verbinden, empfiehlt sich ein Servomotor.
 So ein Spielzeug Auto hat 4Pins mit einem servo-ähnlichen Verhalten. Es wäre prinzipiell möglich auch das mit einem RaspberryPI
 zu verbinden, allerdings ist so etwas dann eher im Elektrotechnik Fachgebiet.
 
@@ -12,7 +12,9 @@ Der Servomotor eines Modellautos hat 3 Pins. Die 3 Pins sind
 * Signal/PWM
 
 
+![pwm](a1TD5.png)
 
+Wir haben einen **SunFounder PCA9685** als 12 Bit PWM Servo Driver. 
 
 
 ##Kameramodul und Webserver

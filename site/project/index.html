@@ -96,8 +96,8 @@
                 <div class="col-md-9" role="main">
 
 <h1 id="das-rc-auto-vorbereiten">Das RC Auto vorbereiten</h1>
-<p>Das Ferngesteuerte Auto <em>sollte</em> ein 1:10 Modelauto sein. Es existieren auch Spielzeug-Ferngesteuerte Autos, allerdings wird deren
-Motor <strong>nicht</strong> nicht von einem <strong>Servomotor</strong> gesteuert. Um ein RC Auto mit einem Raspberry Pi möglichst einfach zu verbinden.
+<p>Das Ferngesteuerte Auto <em>sollte</em> ein 1:10 Modellauto sein. Es existieren auch Ferngesteuerte Autos im Spielzeug Segment, allerdings ist deren
+Motor <strong>kein Servomotor</strong>. Um ein RC Auto mit einem Raspberry Pi möglichst einfach zu verbinden, empfiehlt sich ein Servomotor.
 So ein Spielzeug Auto hat 4Pins mit einem servo-ähnlichen Verhalten. Es wäre prinzipiell möglich auch das mit einem RaspberryPI
 zu verbinden, allerdings ist so etwas dann eher im Elektrotechnik Fachgebiet.</p>
 <h2 id="der-servomotor">Der Servomotor</h2>
@@ -107,6 +107,8 @@ zu verbinden, allerdings ist so etwas dann eher im Elektrotechnik Fachgebiet.</p
 <li>Masse</li>
 <li>Signal/PWM</li>
 </ul>
+<p><img alt="pwm" src="../a1TD5.png" /></p>
+<p>Wir haben einen <strong>SunFounder PCA9685</strong> als 12 Bit PWM Servo Driver. </p>
 <h2 id="kameramodul-und-webserver">Kameramodul und Webserver</h2>
 <p><img alt="Alt-Text" src="../camera_works.jpg" />
 * Über die <a href="http://192.168.2.125:8887">IP-Adresse 192.168.2.125  und den Port 8887</a> kann ein Webinterface aufgerufen werden, über dieses kann das Auto später bewegt werden und die Kamera eingesehen werden.</p>
