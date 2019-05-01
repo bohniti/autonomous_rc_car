@@ -7,11 +7,11 @@
         
         
         
-        <link rel="shortcut icon" href="/img/favicon.ico">
-        <title>IT-Anwendung</title>
-        <link href="/css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="/css/font-awesome.min.css" rel="stylesheet">
-        <link href="/css/base.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Initialisierung - IT-Anwendung</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <script src="/js/jquery-1.10.2.min.js" defer></script>
-        <script src="/js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap-3.0.3.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
@@ -39,27 +39,27 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/.">IT-Anwendung</a>
+                    <a class="navbar-brand" href="..">IT-Anwendung</a>
                 </div>
 
                 <!-- Expanded navigation -->
                 <div class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li >
-                                <a href="/getting-start/">Initialisierung</a>
+                            <li class="active">
+                                <a href="./">Initialisierung</a>
                             </li>
                             <li >
-                                <a href="/project/">Projekt</a>
+                                <a href="../project/">Projekt</a>
                             </li>
                             <li >
-                                <a href="/about/">Team</a>
+                                <a href="../about/">Team</a>
                             </li>
                             <li >
-                                <a href="/termine/">Termine</a>
+                                <a href="../termine/">Termine</a>
                             </li>
                             <li >
-                                <a href="/log/">Log</a>
+                                <a href="../log/">Log</a>
                             </li>
                         </ul>
 
@@ -69,21 +69,107 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="disabled">
+                                <a rel="next" >
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li >
+                                <a rel="prev" href="../project/">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#projekt">Projekt</a></li>
+            <li><a href="#dokumentation">Dokumentation</a></li>
+            <li><a href="#initialisierung">Initialisierung</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
 
-    <div class="row-fluid">
-      <div id="main-content" class="span12">
-        <h1 id="404-page-not-found" style="text-align: center">404</h1>
-        <p style="text-align: center"><strong>Page not found</strong></p>
-      </div>
-    </div>
-
-
+<h1 id="projekt">Projekt</h1>
+<h2 id="dokumentation">Dokumentation</h2>
+<ol>
+<li>Installiere Python, Git und mkdocs</li>
+<li>Klone das <a href="https://github.com/bohniti/it_projekt_dokumentation">Repository</a></li>
+<li>Bearbeite die Dokumentation, indem du die .md Dateien unter /docs änderst (Text) oder die mkdocs.yml anpasst (Menü, Einstellungen).</li>
+<li>Baue die Webseite mit dem Befehl mkdocs build</li>
+<li>Push deine Änderungen in das Repository und aktuallisiere die Online-Dokumentation mit mkdocs gh-deploy</li>
+<li>Rufe die aktuelle Version der <a href="https://bohniti.github.io/it-projekt">Dokumentation</a> auf.</li>
+</ol>
+<h3 id="hilfe-zur-dokumentation">Hilfe zur Dokumentation</h3>
+<ul>
+<li>super einfache <a href="https://rogerdudler.github.io/git-guide/index.de.html">Anleitung</a> und Übersicht für Git</li>
+<li><a href="Markdown Syntax">Markdown Syntax</a></li>
+<li><a href="https://support.squarespace.com/hc/de/articles/206543587-Markdown-Spickzettel">Noch mehr Markdown</a></li>
+</ul>
+<h2 id="initialisierung">Initialisierung</h2>
+<h3 id="fragen-an-die-mitglieder-deadline-kick-off-am-040419">Fragen an die Mitglieder (DeadLine: Kick-Off am 04.04.19):</h3>
+<ul>
+<li>Wie funktioniert ein neuronales Netz grundlegend?</li>
+<li>Welche Arten von neuronalen Netzen gibt es?</li>
+<li>Wodruch unterscheiden sich die neuronalen Netzte von einander?</li>
+<li>Welche Netz-Art eignet sich am besten für das Projekt?</li>
+<li>Was ist ein Layer, eine Epoche usw.?</li>
+<li>Welche Technologie (Netzart, API, Framework) wird von DonkeyCar verwendet?</li>
+</ul>
+<h3 id="kick-off-040419">Kick-Off (04.04.19):</h3>
+<p><a href="/data/kick_off.pdf">PDF Version</a></p>
+<ul>
+<li>
+<p>Wie welches Ergebnis soll erzielt werden?</p>
+<ul>
+<li>Bericht mit 20 Seiten (Ein gekennzeichneter Abschnitt pro Mitglied)</li>
+<li>Vortrag über eine Stunde (Termin selbstständig im WS mit Prof. Trommler vereinbaren)</li>
+</ul>
+</li>
+<li>
+<p>Wie wird die Note gebildet?</p>
+<ul>
+<li>Auf den jeweiligen Berichtsabschnitt (vor allem bei großen qualitativen Unterschieden)</li>
+<li>Vortag</li>
+<li>Gesamtprojektfortschritt</li>
+</ul>
+</li>
+<li>
+<p>Welche Anforderungen gibt es, neben den erwarteten Ergebnissen?</p>
+<ul>
+<li>Hard- und Software bis zum Wintersemester fertig, Bericht bis zum Vortag fertig.</li>
+</ul>
+</li>
+<li>
+<p>Wie findet die Kommunikation statt? (fester Intervall, ...)</p>
+<ul>
+<li>Mögliche Sprechstunde Donnerstag um 08:45</li>
+</ul>
+</li>
+<li>
+<p>Welche Meilensteine sollen erreicht werden?</p>
+<ol>
+<li>Supervised learning</li>
+<li>Reinforcment learning, für mindestens einen Parameter</li>
+</ol>
+</li>
+<li>
+<p>Wie lange haben wir Zeit?</p>
+<ul>
+<li>Allgemein: 14.03.2020</li>
+</ul>
+</li>
+<li>
+<p>Wo arbeiten wir?</p>
+<ul>
+<li>Medienlabor</li>
+</ul>
+</li>
+</ul></div>
         </div>
 
         <footer class="col-md-12">
@@ -91,11 +177,11 @@
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = "/",
+            var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="/js/base.js" defer></script>
-        <script src="/search/main.js" defer></script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
     <div class="modal-dialog">
