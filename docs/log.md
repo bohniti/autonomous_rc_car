@@ -5,4 +5,7 @@
 | ------------- |:-------------:| -----:|
 | [Initialisierung](project.md#initialisierung)   | bis 18.04.2019 | 30 |
 | [Webserver und Kameramodul](project.md#kameramodul-und-webserver)   | 19.04.2019      |   6 |
-| [Steuerung](project.md#Steuerung) | 20.04.2019      |    -- |
+| [Steuerung](project.md#Steuerung) | 20.04.2019      |    6 |
+| [Auto Design, tiefere Planung und erste Fahrversuche](project.md#Steuerung) | 01.05.2019      |    7 |
+***
+| [Gesamt](project.md#Steuerung) |      |    43 |
