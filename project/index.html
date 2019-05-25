@@ -90,7 +90,7 @@
         <li class="main active"><a href="#das-rc-auto-vorbereiten">Das RC Auto vorbereiten</a></li>
             <li><a href="#der-servomotor">Der Servomotor</a></li>
             <li><a href="#kameramodul-und-webserver">Kameramodul und Webserver</a></li>
-            <li><a href="#steuerung">Steuerung</a></li>
+            <li><a href="#abstraktionsebenen">Abstraktionsebenen</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
@@ -119,12 +119,12 @@ Soweit fertig mit dem Verbinden.</p>
 <p><img alt="Alt-Text" src="../camera_works.jpg" />
 <em> Über die <a href="http://192.168.2.125:8887">IP-Adresse 192.168.2.125  und den Port 8887</a> kann ein Webinterface aufgerufen werden, über dieses kann das Auto später bewegt werden und die Kamera eingesehen werden.
 </em> Die Information (Vor, Zurück, Links und Recht) wird mittels JSON an den Webserver der vom Pi gehostet wird geschickt. Das Pi wartet darauf Daten zu bekommen, um anschließend das richtige PWM Signal zu senden.</p>
-<h2 id="steuerung">Steuerung</h2>
+<h2 id="abstraktionsebenen">Abstraktionsebenen</h2>
 <ul>
-<li>Das Auto kann über das <a href="http://192.168.2.125:8887">Webinterface</a> gesteuert werden. Ist aber noch sehr schlecht kalibriert.<ul>
-<li>sfsdfs</li>
-</ul>
-</li>
+<li><a href="../Ebene_1.pdf">Abstraktionsebene 1 - Grobe Gesamtübersicht</a></li>
+<li><a href="../Ebene_2_Laptop.pdf">Abstraktionsebene 2 - Sicht Laptop - Webserver</a></li>
+<li><a href="../Ebene_2_Laptop.pdf">Abstraktionsebene 2 - Sicht RaspberryPi - Motor</a></li>
+<li><a href="../cnn_donkeycar2.pdf">Abstraktionsebene 3 - Neuronales Netz</a></li>
 </ul></div>
         </div>
 
