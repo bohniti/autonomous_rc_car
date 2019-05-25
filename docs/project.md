@@ -29,7 +29,8 @@ Soweit fertig mit dem Verbinden.
 * Über die [IP-Adresse 192.168.2.125  und den Port 8887](http://192.168.2.125:8887) kann ein Webinterface aufgerufen werden, über dieses kann das Auto später bewegt werden und die Kamera eingesehen werden.
 * Die Information (Vor, Zurück, Links und Recht) wird mittels JSON an den Webserver der vom Pi gehostet wird geschickt. Das Pi wartet darauf Daten zu bekommen, um anschließend das richtige PWM Signal zu senden.
 
-##Steuerung
-
-* Das Auto kann über das [Webinterface](http://192.168.2.125:8887) gesteuert werden. Ist aber noch sehr schlecht kalibriert.
-    * sfsdfs
+##Abstraktionsebenen
+* [Abstraktionsebene 1 - Grobe Gesamtübersicht](Ebene_1.pdf)
+* [Abstraktionsebene 2 - Sicht Laptop - Webserver](Ebene_2_Laptop.pdf)
+* [Abstraktionsebene 2 - Sicht RaspberryPi - Motor](Ebene_2_Laptop.pdf)
+* [Abstraktionsebene 3 - Neuronales Netz](cnn_donkeycar2.pdf)
