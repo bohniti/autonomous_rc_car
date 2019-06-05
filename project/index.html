@@ -64,11 +64,6 @@
                         </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
                             <li >
                                 <a rel="next" href="../getting-start/">
                                     <i class="fa fa-arrow-left"></i> Previous
@@ -87,27 +82,27 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#das-rc-auto-vorbereiten">Das RC Auto vorbereiten</a></li>
-            <li><a href="#der-servomotor">Der Servomotor</a></li>
-            <li><a href="#kameramodul-und-webserver">Kameramodul und Webserver</a></li>
+        <li class="main active"><a href="#ein-ferngesteuertes-auto-fahrt-von-allein">Ein Ferngesteuertes Auto fährt von allein!</a></li>
+            <li><a href="#das-rc-auto-vorbereiten">Das RC Auto vorbereiten</a></li>
             <li><a href="#abstraktionsebenen">Abstraktionsebenen</a></li>
+            <li><a href="#neuronales-netz">Neuronales Netz</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="das-rc-auto-vorbereiten">Das RC Auto vorbereiten</h1>
+<h1 id="ein-ferngesteuertes-auto-fahrt-von-allein">Ein Ferngesteuertes Auto fährt von allein!</h1>
+<h2 id="das-rc-auto-vorbereiten">Das RC Auto vorbereiten</h2>
 <p>Das Ferngesteuerte Auto <em>sollte</em> ein 1:10 Modellauto sein. Es existieren auch Ferngesteuerte Autos im Spielzeug Segment, allerdings ist deren
 Motor <strong>kein Servomotor</strong>. Um ein RC Auto mit einem Raspberry Pi möglichst einfach zu verbinden, empfiehlt sich ein Servomotor.
 So ein Spielzeug Auto hat 4Pins mit einem servo-ähnlichen Verhalten. Es wäre prinzipiell möglich auch das mit einem RaspberryPI
 zu verbinden, allerdings ist so etwas dann eher im Elektrotechnik Fachgebiet.</p>
-<h2 id="der-servomotor">Der Servomotor</h2>
+<h3 id="der-servomotor">Der Servomotor</h3>
 <p>Der Servomotor eines Modellautos hat 3 Pins. Die 3 Pins sind</p>
 <ul>
 <li>Versorgungspannung</li>
 <li>Masse</li>
 <li>Signal/PWM</li>
 </ul>
-<p><img alt="pwm" src="../a1TD5.png" /></p>
 <p>Wir haben einen <strong>SunFounder PCA9685</strong> als 12 Bit PWM Servo Driver verwendet. Vom Raspberry Pi müssen wir nun 4 Pins an den Servo Driver anschließen. Die 5V vom Pi an z.B Pin 2 muss an den VCC (+) Pol des Drivers angeschlossen werden.
 Dann vom Pi die Masse z.B Pin 6 muss an die Masse (GND) vom Driver angeschlossen werden. Die Daten müssen aber auch vom Pi in den Motor fließen. Dafür verwenden wir einen I^2C Bus. Diesen Bus verwenden wir über die beiden Pins
 SDL (Serial Data) und SCL (Serial Clock). Der SDl schickt die Daten und der SCL setzt den Taktimpuls. Der SDL hat eine 10Bit Adressierung.
@@ -115,17 +110,48 @@ Sowohl der Pi als auch der Driver haben einen SDL &amp; SCL Anschluss Pin, die h
 Als letzten Schritt muss der Motor noch mit dem Servotreiber verbunden werden. Ein echtes Modellauto hat immer einen wie oben beschriebenen 3 Pin Anschluss. Der Servo hat 3x16 Reihen Pins zur freien Verfügung, die jeweils
 in PWM, V+ und GND (Masse) aufgeteilt sind. Der 3er Pin Block vom Motor muss nun einfach an eine dieser 16 Reihen eingesteckt werden.
 Soweit fertig mit dem Verbinden.</p>
-<h2 id="kameramodul-und-webserver">Kameramodul und Webserver</h2>
-<p><img alt="Alt-Text" src="../camera_works.jpg" />
-<em> Über die <a href="http://192.168.2.125:8887">IP-Adresse 192.168.2.125  und den Port 8887</a> kann ein Webinterface aufgerufen werden, über dieses kann das Auto später bewegt werden und die Kamera eingesehen werden.
-</em> Die Information (Vor, Zurück, Links und Recht) wird mittels JSON an den Webserver der vom Pi gehostet wird geschickt. Das Pi wartet darauf Daten zu bekommen, um anschließend das richtige PWM Signal zu senden.</p>
+<h3 id="kameramodul-und-webserver">Kameramodul und Webserver</h3>
+<ul>
+<li>Über die IP-Adresse <em>192.168.2.125  und den Port 8887</em> kann ein Webinterface aufgerufen werden, über dieses kann das Auto später bewegt werden und die Kamera eingesehen werden.</li>
+<li>Die Information (Vor, Zurück, Links und Recht) wird mittels JSON an den Webserver der vom Pi gehostet wird geschickt. Das Pi wartet darauf Daten zu bekommen, um anschließend das richtige PWM Signal zu senden.</li>
+</ul>
 <h2 id="abstraktionsebenen">Abstraktionsebenen</h2>
 <ul>
 <li><a href="../Ebene_1.pdf">Abstraktionsebene 1 - Grobe Gesamtübersicht</a></li>
 <li><a href="../Ebene_2_Laptop.pdf">Abstraktionsebene 2 - Sicht Laptop - Webserver</a></li>
 <li><a href="../Ebene_2_Laptop.pdf">Abstraktionsebene 2 - Sicht RaspberryPi - Motor</a></li>
 <li><a href="../cnn_donkeycar2.pdf">Abstraktionsebene 3 - Neuronales Netz</a></li>
-</ul></div>
+</ul>
+<h2 id="neuronales-netz">Neuronales Netz</h2>
+<p>Wir haben ein wenig mit den verschiedenen Layern herumgespielt und sind zu einem recht guten Ergebnis gekommen. Diese Netze wurden bisher nur auf einem
+Online-Simulator getestet, aber es zeigt, dass eine Strecke und vor allem die Mittellinie erkannt werden.</p>
+<h3 id="fast-ohne-ausreier">Fast ohne Ausreißer:</h3>
+<p><code>Gutes Netz:
+x = Convolution2D(24, (5, 5), strides=(2, 2), activation='relu')(x)  
+x = Convolution2D(32, (5, 5), strides=(2, 2), activation='relu')(x)  
+x = Convolution2D(64, (5, 5), strides=(2, 2), activation='relu')(x)
+x = Convolution2D(64, (3, 3), strides=(2, 2), activation='relu')(x)  
+x = Convolution2D(64, (3, 3), strides=(1, 1), activation='sigmoid’)(x)  
+x = Flatten(name='flattened')(x)
+x = Dense(300, activation='relu')(x)  
+x = Dense(20, activation='relu')(x)</code></p>
+<hr />
+<h3 id="fahrt-im-kreis">Fährt im Kreis:</h3>
+<p><code>Schlechtes Netz:
+x = Convolution2D(filters=24, kernel_size=(5, 5), strides=(2, 2), activation='relu')(x)
+x = Convolution2D(filters=32, kernel_size=(5, 5), strides=(2, 2), activation='relu')(x)
+x = Convolution2D(filters=64, kernel_size=(5, 5), strides=(2, 2), activation='relu')(x)
+x = Convolution2D(filters=64, kernel_size=(3, 3), strides=(2, 2), activation='relu')(x)
+x = Convolution2D(filters=64, kernel_size=(3, 3), strides=(1, 1), activation='relu')(x)
+x = Flatten(name='flattened')(x)
+x = Dense(units=100, activation='linear')(x)
+x = Dropout(rate=.1)(x)
+x = Dense(units=50, activation='linear')(x)
+x = Dropout(rate=.1)(x)
+angle_out = Dense(units=1, activation='linear', name='angle_out')(x)
+throttle_out = Dense(units=1, activation='linear', name='throttle_out')(x)
+model = Model(inputs=[img_in], outputs=[angle_out, throttle_out])
+model.compile(optimizer='adam',loss={'angle_out': 'mean_squared_error','throttle_out': 'mean_squared_error'},loss_weights={'angle_out': 0.5, 'throttle_out': .5})</code></p></div>
         </div>
 
         <footer class="col-md-12">
@@ -137,32 +163,8 @@ Soweit fertig mit dem Verbinden.</p>
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="../js/base.js" defer></script>
-        <script src="../search/main.js" defer></script>
 
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
-            </div>
-            <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
-                <form role="form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
