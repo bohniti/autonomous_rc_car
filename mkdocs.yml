@@ -5,3 +5,4 @@ nav:
 - Team: 'about.md'
 - Termine: 'termine.md'
 - Log: 'log.md'
+plugins: []
