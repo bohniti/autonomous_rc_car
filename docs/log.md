@@ -10,4 +10,7 @@
 | [Administrative Aufgaben (Meilenstein, Linuxlabor, 3D Druck)]() | 11.05.2019 + 12.05.2019      |    10 |
 | [Abstraktionsebenen, finale Planungen, Supervised Learning](project.md##neuronales-netz) | 25.05.2019      |    7 |
 | [Neuronales Netz: Keras](project.md#Steuerung) | 26.05.2019      |    8 |
-| [Gesamt](project.md#Steuerung) |      |    124 |
+| Prototyp der Karosserie für die erstellen (Styropor) | 01.06.2019      |    3 |
+| CAD Model der Karosserie für den 3d Druck erstellen | 01.06.2019  - 03.06.2019     |    15 |
+
+| [Gesamt](project.md#Steuerung) |      |    142 |
