@@ -29,7 +29,7 @@ Soweit fertig mit dem Verbinden.
 ##Abstraktionsebenen
 * [Abstraktionsebene 1 - Grobe Gesamtübersicht](Ebene_1.pdf)
 * [Abstraktionsebene 2 - Sicht Laptop - Webserver](Ebene_2_Laptop.pdf)
-* [Abstraktionsebene 2 - Sicht RaspberryPi - Motor](Ebene_2_Laptop.pdf)
+* [Abstraktionsebene 2 - Sicht RaspberryPi - Motor](Ebene_2_Raspi.pdf)
 * [Abstraktionsebene 3 - Neuronales Netz](cnn_donkeycar2.pdf)
 
 ##Neuronales Netz
@@ -66,3 +66,9 @@ angle_out = Dense(units=1, activation='linear', name='angle_out')(x)
 throttle_out = Dense(units=1, activation='linear', name='throttle_out')(x)
 model = Model(inputs=[img_in], outputs=[angle_out, throttle_out])
 model.compile(optimizer='adam',loss={'angle_out': 'mean_squared_error','throttle_out': 'mean_squared_error'},loss_weights={'angle_out': 0.5, 'throttle_out': .5})`
+
+###Fährt im Kreis
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lWnZAFxccfs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Fährt !
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VwHTCMuq3xs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
