@@ -151,7 +151,11 @@ x = Dropout(rate=.1)(x)
 angle_out = Dense(units=1, activation='linear', name='angle_out')(x)
 throttle_out = Dense(units=1, activation='linear', name='throttle_out')(x)
 model = Model(inputs=[img_in], outputs=[angle_out, throttle_out])
-model.compile(optimizer='adam',loss={'angle_out': 'mean_squared_error','throttle_out': 'mean_squared_error'},loss_weights={'angle_out': 0.5, 'throttle_out': .5})</code></p></div>
+model.compile(optimizer='adam',loss={'angle_out': 'mean_squared_error','throttle_out': 'mean_squared_error'},loss_weights={'angle_out': 0.5, 'throttle_out': .5})</code></p>
+<h3 id="fahrt-im-kreis_1">Fährt im Kreis</h3>
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/lWnZAFxccfs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+<h3 id="fahrt">Fährt !</h3>
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/VwHTCMuq3xs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p></div>
         </div>
 
         <footer class="col-md-12">
