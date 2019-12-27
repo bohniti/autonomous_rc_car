@@ -47,7 +47,7 @@
     \title{    
     \includegraphics[width=4.5in]{photo/logo.png}
     \newline \newline
-     IT-Projekt \\ 
+     IT-Project \\ 
      \textit{Autonmously driving Remote Control Car}
      }
 
@@ -82,20 +82,62 @@ ToDo
 
 \section{Literature Survey}
 \subsection{Reinforcement Learning}
+ToDo \\
 
 \section{Hardware}
+
 \subsection{RC Car}
-\subsubsection{Technischer Aufbau}
+
+\subsubsection{Technical Details}
+ToDo \\
+
 \subsubsection{Servomotor}
+ToDo \\
 
 \subsection{Raspberry Pi}
+Even though by now the Raspberry Pi 4 is out, we still use the Raspberry Pi 3B+, because we are sure that it is compatible with our other microcontrollers and software. \\
+We use a 16GB SanDisc to store the operating system and the machine learning model on the Raspberry Pi. 
+
 \subsubsection{Technical Details}
+The Raspberry Pi 3B+ is equipped with a lot of different extensions. It has a Wi-Fi module to communicate with the Python webserver and a farely fast processor to run the neural network and classify where to drive next. The Processor is the Broadcom BCM2837B0, Cortex-A53 with 1.4GHz and it has 1GB LPDDR2 SDRAM. \\
+Furthermore for the connectivity the Pi has extended 40-pin GPIO header. The weight is only 42 gramms, which make it easy to attach it onto the RC car.
+
 \subsubsection{Cameramodule}
+ToDo
 
 \subsection{Servodriver}
+We use the SunFounder PCA9685. The price for this microcontroller is approximatetly 13 euro on the most famous marketplaces. The servodriver is needed to produce the PWM (Pulse width modulation) signals for our Raspberry Pi. It acts as joint for the RC cars's servomotor and the Raspberry Pi. \\
 \subsubsection{Technical Details}
+The SunFounder PCA9685 consists of many different Pins \cite{servo}. It is powered by the GND and the VCC pin. The VCC is uses voltage of 3-5V. Furthermore are three control pins on the board, namely the:
+
+\begin{itemize}
+\item SCL - I2C clock pin
+\item SDA - I2C data pin 
+\item OE - Output enable 
+\end{itemize}
 
 \subsection{Cable Management}
+\subsubsection{Servomotor to Servodriver}
+A real model car has always a servomotor as motor. This servomotor receives input from two pins and each of the two are powered seperatly with V+ and the GND pin. 
+So in total the servomotor has six pins. Whereas the servodriver has 3x16 rows of pins available on it. Each are the three output pins:
+
+\begin{itemize}
+\item V+ - Power supply
+\item GND - Ground
+\item PWM
+\end{itemize}
+
+We connect the servomotor pins accordingly onto two of the rows of the servodriver. This six pins in total control the entire behavior of the car. One of the three-pin-blocks is responsible for the steering and the other one is responsible for the speed of the car. \\
+
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=3.5in]{photo/ebene2.pdf}\\
+  \caption{Cable Management}\label{ebene2}
+  \end{center}
+\end{figure}
+
+\subsubsection{Servodriver to Raspberry Pi}
+There are four pins that we need to connect from the Raspberry Pi onto the servodriver. Two out of those four pins are just for the power supply. We connect the 5V pin from the raspberry Pi to the VCC pins, which accordingly powers the SunFounder servodriver. To make a power supply work we always need the ground pin (GND) as well. The other two pins communicate the data from Raspberry Pi to servodriver and vice versa. The communication pins work with the I2C bussystem, which is used by the SDL (serial data) pin and the SCL (serial clock). The SDL 10Bit adressing bus sends the data and the SCL sets up the clocking time respectively. Both the Raspberry Pi and the servodriver have the SDL and the SCL connector pins, so we can easily plug them in. 
 
 \section{Software Architecture}
 
