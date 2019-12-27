@@ -14,6 +14,7 @@ As our final project we set up a remote control car with a raspberry Pi to drive
 
 - [Donkeycar](https://github.com/Mavengence/Autonomous-RCCar-IT-Project-TH.OHM/tree/master/donkeycar) Repository
 - [Car](https://github.com/Mavengence/Autonomous-RCCar-IT-Project-TH.OHM/tree/master/mycar) Repository
+- [Projekt Homepage](https://bohniti.github.io/it-projekt/)
 
 ## Getting Started
 
@@ -28,6 +29,7 @@ git clone https://github.com/Mavengence/Autonomous-RCCar-IT-Project-TH.OHM.git
 - Of course you need git to get the source
 - If you want to compile the report or the presentation by ur self u need a LaTex Compiler for your OS and maybe an IDE which makes things easier
 - If you want to compile, train and play with our Code you need a python working environment. We used Jupyter Notebooks. The requiered packeges you can see in the Notebooks itself.
+- For Prerequisites of our Project Hompage check the Website itself. There you willl find a detailed description of how to contribute changes to website. 
 
 ### Run the Notebook
 
