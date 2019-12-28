@@ -224,10 +224,10 @@ For the webserver we use the Python \textit{package} called \textit{Tornado}. To
 
 \subsection{Unity}
 
-ToDo
+Based on the work of the open-source developer project from Twan Kramer donkey car provides a simulator software. The Simulator allows us to drive with the car as with a real RCC\-Car. While driving, we can record labelled pictures. The C\# Framework Unity is building used to implement the simulator software. More precisely it uses the Unity 3D game engine to simulate car physics in a 3D world and generates image steering pairs to train our neural network \cite{sdsandbox}. In the Simulator, we can choose between different environments. So, we can be sure that the generated data has enough variety to get a useful model \cite{contributionOfVariables}. Going on a more detailed level would be too much to provide all those details in our report. 
 
 \section{Deep Learning}
-\noindent To solve the image classification task, we are using a convolutional neuronal network (CNN). CNN's are a particular case of feed-forward neural networks \cite{Goodfellow-et-al-2016}. On a very fundamental level, we can say that a feed-forward neural network - as the most machine learning models - is a function \cite{RN5}. The function of a feed-forward neural network can simply be described as \(y = f(x, \o )\) . CNN's and feed-forward neural networks are estimating parameter values. So for \(y = f(x, \o )\) we estimate the parameter \(\o \) \cite{Goodfellow-et-al-2016}. Through those estimated parameter values we are receiving a function back with the smallest possible difference between the predicted output values and the defined output values. A function that measures the difference between the expected - and the defined output is a so-called loss function \cite{Goodfellow-et-al-2016}. To compare our model accuracy with other model, we are using the following evaluation criteria:
+\noindent To solve the image classification task, we are using a convolutional neuronal network (CNN). Convolutional Neural Networks are a particular case of feed-forward neural networks \cite{Goodfellow-et-al-2016}. On a very fundamental level, we can say that a feed-forward neural network - as the most machine learning models - is a function \cite{RN5}. The function of a feed-forward neural network can simply be described as \(y = f(x, \o )\) . CNN's and feed-forward neural networks are estimating parameter values. So for \(y = f(x, \o )\) we estimate the parameter \(\o \) \cite{Goodfellow-et-al-2016}. Through those estimated parameter values we are receiving a function back with the smallest possible difference between the predicted output values and the defined output values. A function that measures the difference between the expected - and the defined output is a so-called loss function \cite{Goodfellow-et-al-2016}. To compare our model accuracy with other model, we are using the following evaluation criteria:
 \begin{equation}
 Acc(f,D) = \frac{1}{m}\sum_{m}^{i=1} \mathbb{I} \left [ y^{(i)} =f(x^{()i)})\right ]
 \label{acc}
@@ -236,6 +236,7 @@ CNN's and classical feed-forward neuronal networks differ in their basis of calc
 
 \subsubsection{Model Architecture}
 \label{subsec:ModelArchitecture}
+ToDo: get Img from paper which choes the different model types!
 For our model, we choose pretty much the underlying implementation of the official website. It is an implementation of an architecture which is introduced by a group of researches which working for Nvidia. Their study showed that it is possible to train a model which can be used for autonomous driving. Especially the researchers showed that they are using a small amount of labelled data — more preseily,   only a few pictures from a short time of driving, where the images are marked with the direction in which the vehicle should drive\cite{LearningForSelf-DrivingCars}. As in our \hyperref[sec:LiteratureSurvey]{Literature Survey} mentioned Christian Friedrich Coors implemented the model before.  As he said, the model has 266.628 parameters which can be trained \cite{Coors}. The architecture u can see in Figure \ref{fig:Archi}.
 
 \begin{figure}
@@ -278,11 +279,10 @@ This represents the 64 first feature maps of a random picture from the dataset. 
 \subsubsection{Pooling Layers}
 \noindent It is common to add a pooling layer in-between the convolutional layers periodically. The function exists to avoid overfitting and step by step reduce the size of the input image by reducing the number of parameters and computations of the network \cite{RN2}. Anyways as mentioned earlier we decided against pooling layers as discussed in our \hyperref[subsec:ModelArchitecture]{Model Architecture} Section.\\
 \subsubsection{Fully-Connected Layers}
-\noindent The Dense layer is the last layer of our model. It is also called the \textit{fully connected layer}. Neurons in the fully connected layer have full connections to all activations in the previous layer, as in the normal neural networks. Their activation functions will then be computed by a matrix multiplication which is followed by a bias offset. 
-For the ten different animals we respectively have ten fully connected neurons in the dense layer. \\
+\noindent The Dense layer is the last layer of our model. It is also called the \textit{fully connected layer}.  A Dense layer can be seen as a linear operation in which every input is connected to every output by weight. So, there are n inputs multiplied by n outputs weights - which can be a lot — generally followed by a non-linear activation function. This activation functions will then be computed by a matrix multiplication which is followed by a bias offset. 
+We are using four of those Dense Layers in our model. The first two Dense Layers are used for Kernel Regularization; the others are used to get the two outputs. We will talk more about the output of our model in the \hyperref[sec:AutonomouslyDriving]{Autonomously Driving} Section. \\
 \subsubsection{Kernel Regularization}
-\noindent There are many different regularizations to prevent the neural network from overfitting. For our project we chose the \textit{L2 regularization} because it is the most common form.
-It can be integrated by penalizing the squared magnitude of all parameters directly in the objective. So, for every weight \textit{w} in the network, the term \(\frac{1}{2} \lambda w^2\) gets added to the objective, where \(\lambda \) is the regularization strength. It's usual to see \(\frac{1}{2}\) in the front, because the gradient of this term with respect to \textit{w} is simply \(\lambda w\) instead of \(2 \lambda w\). The L2 penalizes the peaky weight vectors and prefers the diffuse weight vectors \cite{RN4}. During the gradient descent weight update, the L2 regularization has the meaning, that every weight is decayed linearly (\textit{w += -lambda * w}) towards zero. \\
+\noindent There are many different regularizations to prevent the neural network from overfitting. Next we are going to introduce the two most essential Kernel Regularizations. It can be integrated by penalizing the squared magnitude of all parameters directly in the objective. So, for every weight \textit{w} in the network, the term \(\frac{1}{2} \lambda w^2\) gets added to the objective, where \(\lambda \) is the regularization strength. It's usual to see \(\frac{1}{2}\) in the front, because the gradient of this term with respect to \textit{w} is simply \(\lambda w\) instead of \(2 \lambda w\). The L2 penalizes the peaky weight vectors and prefers the diffuse weight vectors \cite{RN4}. During the gradient descent weight update, the L2 regularization has the meaning, that every weight is decayed linearly (\textit{w += -lambda * w}) towards zero. The Idea of the Drop-Out Kernel Regularisation is to drop out neurons frequently and randomly. That means we are losing Information, but our model is more adaptive to unseen data. The increase in the ability comes from the fact that the weights in dropped out neurons are temporally not updated \cite{Dropout}. In small experiments, the research found out that the younger dropout approach is less computing-intensive and more robust than l2 \cite{dropoutVsL2}. So, we decided - as with the missing pooling layers before - that we are using drop out for Kernel Regularisation to prevent our model for overfitting. \\
 \subsubsection{Batch Normalization}
 \noindent A technique developed by Ioffe and Szegedy \cite{RN4} is called Batch Normalization properly initializes neural networks by explicitly forcing the activations throughout a network to take on a unit gaussian distribution at the beginning of the training. Normalization is a simple differentiable operation. 
 It allows to use higher learning rates at the beginning and is less vulnerable to a bad initialization. In other words, neural networks that implement batch normalization layers are significantly more robust. Additionally, batch normalization can be interpreted as a preprocessing step on every layer of the network. Batch normalization yields in general, a substantial improvement in the training process. \\
@@ -302,14 +302,14 @@ L_{i} = f_{y_{i}} + log \sum_{j} e^{f_{j}}
 where we are using the notation \(f_{j}\) to mean the \textit{j-th} element of the vector of class scores \textit{f}. The full loss for the dataset is the mean of \(f_{i}\) over all training examples together with a regularization term \textit{R(W)}.
 The cross-entropy loss, or also called log loss, measures the performance of our classification model with the output as probability values between zero and one. The cross-entropy loss increases as the predicted probability diverges from real value labels.
 \subsubsection{Optimizer}
-\noindent There are many possible optimizer suitable for our task. The common ones are the RMSprob, Adam or the stochastic gradient descent (SGD) \cite{RN1}. We decided to use the SGD to minimize the loss by computing the gradient with respect to a randomly selected batch from the training set. This method is more efficient than computing the gradient with respect to the whole training set before each update is performed.
+\noindent There are many possible optimizer suitable for our task. The common ones are the RMSprob, Adam or the stochastic gradient descent (SGD) \cite{RN1}. As before at our Section about kernal regularization we are going to introduce the two most essential Ways to Optimize our Model. While doing an Image classification with 10 Classes as in cifar10, we could decide to use the SGD to minimize the loss by computing the gradient with respect to a randomly selected batch from the training set. This method is more efficient than computing the gradient with respect to the whole training set before each update is performed. 
 \begin{equation}
 \frac{\partial p_i}{\partial a_j}=\left\{\begin{matrix} p_i(1-p_i) & if & i=j\\ -p_j p_i & if & i\neq j \end{matrix}\right.
 \end{equation} \\
 \begin{equation}
 \frac{\partial L}{\partial o_i}=p_i-y\_oh_i
 \end{equation} 
-For the derivation of the cross entropy loss, \textit{y\_oh} is the one-hot encoded representation of the class labels.
+For the derivation of the cross entropy loss, \textit{y\_oh} is the one-hot encoded representation of the class labels. But in our case we decied to use the Adam optimizer. An even more efficient optimizer. Research found out that it is compared to other opimizer a better perfomer in every aspect \cite{AutomotivePlatformsAutonomousDriving} \cite{Adam}
 \subsubsection{Softmax}
 \noindent The softmax normalizes the class probabilities to one and it has a probabilistic interpretation. 
 \begin{equation}
@@ -321,6 +321,7 @@ In between the convolutional layer (CNN) and the fully connected layer (Dense), 
 
 
 \section{Autonomously Driving}
+\label{sec:AutonomouslyDriving}
 
 \section{Evaluation}
 
