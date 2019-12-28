@@ -21,9 +21,29 @@
 \usepackage{amsfonts}
 \hyphenation{op-tical net-works semi-conduc-tor}
 \usepackage{graphicx}
-\usepackage{hyperref}
+
+\usepackage{xcolor}
+\definecolor{th}{RGB}{0,83,161}
 \graphicspath{{../pdf/}{../jpeg/}}
 \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+
+\usepackage[
+    bookmarks=true,
+    bookmarksopen=true,
+    bookmarksnumbered=true,
+    bookmarksopenlevel=1,
+    pdfpagelabels=true,
+    colorlinks=true,
+    linkcolor=th,
+    urlcolor=magenta,
+    anchorcolor=black,
+    citecolor=cyan,
+    filecolor=magenta,
+    menucolor=red,
+    plainpages=false,
+    hypertexnames=true,
+    linktocpage=false,
+]{hyperref}
 
 \usepackage[cmex10]{amsmath}
 %Mathabx do not work on ScribTex => Removed
@@ -154,7 +174,7 @@ In picture \ref{featuremap} can be seen a calculation example of how convolution
 This represents the 64 first feature maps of a random picture from the dataset. We can observe that the filters already focus on certain points on the cat's body. We further used this feature map as input for the second CNN layer. The output of the second feature map (figure \ref{featuremap2}) further sharpens the filters. For example we can see that feature map 2 until 5 focuses on the cat itself, whereas map 8 puts its focus on the cats ears. \\
 
 \subsubsection{Pooling Layers}
-\noindent It is common to add a pooling layer in-between the convolutional layers periodically. The function exists to avoid overfitting and step by step reduce the size of the input image by reducing the number of parameters and computations of the network \cite{RN2}. Anyways as mentioned earlier we decided against pooling layers as discussed in our \hyperref[subsec:ModelArchitecture]{Mode lArchitecture} Section.\\
+\noindent It is common to add a pooling layer in-between the convolutional layers periodically. The function exists to avoid overfitting and step by step reduce the size of the input image by reducing the number of parameters and computations of the network \cite{RN2}. Anyways as mentioned earlier we decided against pooling layers as discussed in our \hyperref[subsec:ModelArchitecture]{Model Architecture} Section.\\
 \subsubsection{Fully-Connected Layers}
 \noindent The Dense layer is the last layer of our model. It is also called the \textit{fully connected layer}. Neurons in the fully connected layer have full connections to all activations in the previous layer, as in the normal neural networks. Their activation functions will then be computed by a matrix multiplication which is followed by a bias offset. 
 For the ten different animals we respectively have ten fully connected neurons in the dense layer. \\
