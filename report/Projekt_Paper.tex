@@ -102,7 +102,19 @@ ToDo
 
 \section{Literature Survey}
 \label{sec:LiteratureSurvey}
+
 \subsection{Reinforcement Learning}
+
+The two big approaches in the Machine Learning field are the supervised and unsupervised learning. Supervised learning requires labeled data, this means the data is already tagged with the \textit{correct answer}. The model learnes on the data and their labels and predicts an output based on that. Whereas the unsupervised learning describes the way in which the model works on its own to discover the information. It deals mostly with unlabeled data and gets penalized if it produces wrong results. The unsupervised learning has some prime advantages over the supervised learning:
+
+\begin{itemize}
+\item Finds all kind of unknown patterns: Unknown objects on the road, broken streets
+\item Optimizes the performance criteria with the use of experience
+\item Solves various types of real-world problems, such as autonomous driving
+\end{itemize}
+
+We found that a team from the North China University of Technology already approached the try to drive the donkeycar autonomously \cite{reinforcement}. The team used the \textit{gym environment} from OpenAI \footnote{\url{https://gym.openai.com/}}. This open-source project from OpenAI allows to build relatively easy penalizing models to implement reinforcement Learning. OpenAI provides plenty of API's such as reset(), step() or is\_game\_over(). This methods are the core for the model to recognize its own faults. \\
+They use the DDQN algorithm to perform the reinforcement Learning. DDQN stands for Deep Reinforcement Learning with Double Q-learning \cite{reinforcement2} developed by a team of researchers at \textit{Google DeepMind}. Explaining how this algorithm works would exceed the limits of this paper, but the final output of the team \cite{reinforcement} was autonomously driving donkey car. The training process was fairly slow and it didn't drive completely exact, but the experiment shows that the reinforcement Learning can be implement together with the donkeycar quite easily.
 
 \section{Hardware}
 
@@ -224,7 +236,7 @@ For the webserver we use the Python \textit{package} called \textit{Tornado}. To
 
 \subsection{Unity}
 
-Based on the work of the open-source developer project from Twan Kramer donkey car provides a simulator software. The Simulator allows us to drive with the car as with a real RCC\-Car. While driving, we can record labelled pictures. The C\# Framework Unity is building used to implement the simulator software. More precisely it uses the Unity 3D game engine to simulate car physics in a 3D world and generates image steering pairs to train our neural network \cite{sdsandbox}. In the Simulator, we can choose between different environments. So, we can be sure that the generated data has enough variety to get a useful model \cite{contributionOfVariables}. Going on a more detailed level would be too much to provide all those details in our report. 
+Based on the work of the open-source developer project from Twan Kramer, donkey car provides a simulator software. The Simulator allows us to drive with the car as with a real RCC\-Car. While driving, we can record labelled pictures. The C\# Framework Unity is building used to implement the simulator software. More precisely it uses the Unity 3D game engine to simulate car physics in a 3D world and generates image steering pairs to train our neural network \cite{sdsandbox}. In the Simulator, we can choose between different environments. So, we can be sure that the generated data has enough variety to get a useful model \cite{contributionOfVariables}. Going on a more detailed level would be too much to provide all those details in our report. 
 
 \section{Deep Learning}
 \noindent To solve the image classification task, we are using a convolutional neuronal network (CNN). Convolutional Neural Networks are a particular case of feed-forward neural networks \cite{Goodfellow-et-al-2016}. On a very fundamental level, we can say that a feed-forward neural network - as the most machine learning models - is a function \cite{RN5}. The function of a feed-forward neural network can simply be described as \(y = f(x, \o )\) . CNN's and feed-forward neural networks are estimating parameter values. So for \(y = f(x, \o )\) we estimate the parameter \(\o \) \cite{Goodfellow-et-al-2016}. Through those estimated parameter values we are receiving a function back with the smallest possible difference between the predicted output values and the defined output values. A function that measures the difference between the expected - and the defined output is a so-called loss function \cite{Goodfellow-et-al-2016}. To compare our model accuracy with other model, we are using the following evaluation criteria:
