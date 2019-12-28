@@ -21,9 +21,29 @@
 \usepackage{amsfonts}
 \hyphenation{op-tical net-works semi-conduc-tor}
 \usepackage{graphicx}
-\usepackage{hyperref}
+
+\usepackage{xcolor}
+\definecolor{th}{RGB}{0,83,161}
 \graphicspath{{../pdf/}{../jpeg/}}
 \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+
+\usepackage[
+    bookmarks=true,
+    bookmarksopen=true,
+    bookmarksnumbered=true,
+    bookmarksopenlevel=1,
+    pdfpagelabels=true,
+    colorlinks=true,
+    linkcolor=th,
+    urlcolor=magenta,
+    anchorcolor=black,
+    citecolor=cyan,
+    filecolor=magenta,
+    menucolor=red,
+    plainpages=false,
+    hypertexnames=true,
+    linktocpage=false,
+]{hyperref}
 
 \usepackage[cmex10]{amsmath}
 %Mathabx do not work on ScribTex => Removed
@@ -47,7 +67,7 @@
     \title{    
     \includegraphics[width=4.5in]{photo/logo.png}
     \newline \newline
-     IT-Project \\ 
+     IT-Projekt \\ 
      \textit{Autonmously driving Remote Control Car}
      }
 
@@ -81,12 +101,12 @@ ToDo
 ToDo
 
 \section{Literature Survey}
+\label{sec:LiteratureSurvey}
 \subsection{Reinforcement Learning}
-ToDo \\
 
 \section{Hardware}
-
 \subsection{RC Car}
+<<<<<<< HEAD
 Our car is the \textit{s-idee® 18175 9115 RC Car Buggy waterproof monstertruck 1:12}.
 The remote control car is the heart of our project. Eventhough basically every remote control car can be used to drive autonomously, it is a better choice to buy a real model car, because a real servomotor makes it much easier. The cost of a real model RC car is approximately 100 euros. It is neccessary that the car is quite large, because we need to store the Raspberry Pi, the camera and a powerbank for the Pi onto the car. To keep everything in position, we attached it with a 3D print of a holding system, which was tailored by us for our car. \\
 
@@ -118,37 +138,19 @@ For our purpose we use the Raspberry Pi Camera Module 8MP v2.1. It can capture p
 \subsection{Servodriver}
 We use the SunFounder PCA9685. The price for this microcontroller is approximatetly 13 euro on the most famous marketplaces. The servodriver is needed to produce the PWM (Pulse width modulation) signals for our Raspberry Pi. It acts as joint for the RC cars's servomotor and the Raspberry Pi. \\
 
-\subsubsection{Technical Details}
-The SunFounder PCA9685 consists of many different Pins \cite{servo}. It is powered by the GND and the VCC pin. The VCC is uses voltage of 3-5V. Furthermore are three control pins on the board, namely the:
+=======
+\subsubsection{Technischer Aufbau}
+\subsubsection{Servomotor}
 
-\begin{itemize}
-\item SCL - I2C clock pin
-\item SDA - I2C data pin 
-\item OE - Output enable 
-\end{itemize}
+\subsection{Raspberry Pi}
+\subsubsection{Technical Details}
+\subsubsection{Cameramodule}
+
+\subsection{Servodriver}
+>>>>>>> b61d346bb0d98c19f46ea923086a7cd8e571eeb5
+\subsubsection{Technical Details}
 
 \subsection{Cable Management}
-\subsubsection{Servomotor to Servodriver}
-A real model car has always a servomotor as motor. This servomotor receives input from two pins and each of the two are powered seperatly with V+ and the GND pin. 
-So in total the servomotor has six pins. Whereas the servodriver has 3x16 rows of pins available on it. Each are the three output pins:
-
-\begin{itemize}
-\item V+ - Power supply
-\item GND - Ground
-\item PWM
-\end{itemize}
-
-We connect the servomotor pins accordingly onto two of the rows of the servodriver. This six pins in total control the entire behavior of the car. One of the three-pin-blocks is responsible for the steering and the other one is responsible for the speed of the car. \\
-
-\begin{figure}
-  \begin{center}
-  \includegraphics[width=3.5in]{photo/ebene2.pdf}\\
-  \caption{Cable Management}\label{ebene2}
-  \end{center}
-\end{figure}
-
-\subsubsection{Servodriver to Raspberry Pi}
-There are four pins that we need to connect from the Raspberry Pi onto the servodriver. Two out of those four pins are just for the power supply. We connect the 5V pin from the raspberry Pi to the VCC pins, which accordingly powers the SunFounder servodriver. To make a power supply work we always need the ground pin (GND) as well. The other two pins communicate the data from Raspberry Pi to servodriver and vice versa. The communication pins work with the I2C bussystem, which is used by the SDL (serial data) pin and the SCL (serial clock). The SDL 10Bit adressing bus sends the data and the SCL sets up the clocking time respectively. Both the Raspberry Pi and the servodriver have the SDL and the SCL connector pins, so we can easily plug them in. 
 
 \section{Software Architecture}
 
@@ -191,16 +193,18 @@ Acc(f,D) = \frac{1}{m}\sum_{m}^{i=1} \mathbb{I} \left [ y^{(i)} =f(x^{()i)})\rig
 CNN's and classical feed-forward neuronal networks differ in their basis of calculation. Feed-forward neural networks are using matrix multiplication, whereas CNN's are using convolutions. Convolutional layers, pooling layers, and fully-connected layers are specific layers for a CNN \cite{LeCun1998}. \\
 
 \subsubsection{Model Architecture}
-We decided to use the VGG16 model architecture \cite{RN15} (Figure \ref{vgg16}). 
+\label{subsec:ModelArchitecture}
+For our model, we choose pretty much the underlying implementation of the official website. It is an implementation of an architecture which is introduced by a group of researches which working for Nvidia. Their study showed that it is possible to train a model which can be used for autonomous driving. Especially the researchers showed that they are using a small amount of labelled data — more preseily,   only a few pictures from a short time of driving, where the images are marked with the direction in which the vehicle should drive\cite{LearningForSelf-DrivingCars}. As in our \hyperref[sec:LiteratureSurvey]{Literature Survey} mentioned Christian Friedrich Coors implemented the model before.  As he said, the model has 266.628 parameters which can be trained \cite{Coors}. The architecture u can see in Figure \ref{fig:Archi}.
 
 \begin{figure}
   \begin{center}
-	  \includegraphics[width=3.5in]{photo/vgg16.png}\\
-  \caption{VGG16 Model Architecture from https://arxiv.org/pdf/1409.1556.pdf}\label{vgg16}
+  \includegraphics[width=3in]{photo/CNNArchitecture.png}\\
+  \caption{Model Architecure from the Nvidia Research Team \cite{LearningForSelf-DrivingCars}}\label{featuremap}
+  \label{fig:Archi}
   \end{center}
 \end{figure}
 
-In 2014, an implementation of the architecture won the ILSVR(Imagenet) competition. As we could already see in the global leaderboard that there are quite impressive results, we still decided to use this classic example. The complexity is rather small in comparison to other designs which are provided in the ranking. Note that - as  mentioned in the \hyperref[sec:problemDescription]{"Problem Desciption"}, the goal of our project was not to get an outstanding result of the accuracy. The main goal was  to understand the principals behind deep learning and to get a feeling of what the state of the art (in image recognition) is. So, because the VGG16 \cite{RN15} is known as the best visualizable model architecture, we thought it would be the best choice to accomplish our goal in this way. The model architecture is also known for getting rid of a vast amount of hyper-parameters. Instead, it is focusing on tiny filter size and a small strate. The technical details \hyperref[sec:techDetails]{"Problem Desciption"}, of the different layers are providing more details about its implementation. 
+The Team around Nvidia concluded in their paper that there is more work to do for getting the driving process more stable \cite{LearningForSelf-DrivingCars}. Jelena Kocić and their team focused on this task and got a better result. They reached their goal by using other building blocks like a pooling layer. They mentioned that the training process and the driving process is more computational intense. Because of our small hardware resources at the raspberry pi is why we decided to use the first model. \cite{AutomotivePlatformsAutonomousDriving}
 \subsubsection{Convolutional Layers}
 \noindent The convolutional Layer performs the extracting of features from the input matrix into a feature map. For this procedure, we use matrix multiplication in the form of the dot product and a filter (feature detector, kernel) \cite{Goodfellow-et-al-2016}. 
 
@@ -230,7 +234,7 @@ In picture \ref{featuremap} can be seen a calculation example of how convolution
 This represents the 64 first feature maps of a random picture from the dataset. We can observe that the filters already focus on certain points on the cat's body. We further used this feature map as input for the second CNN layer. The output of the second feature map (figure \ref{featuremap2}) further sharpens the filters. For example we can see that feature map 2 until 5 focuses on the cat itself, whereas map 8 puts its focus on the cats ears. \\
 
 \subsubsection{Pooling Layers}
-\noindent It is common to add a pooling layer in-between the convolutional layers periodically. The function exists to avoid overfitting and step by step reduce the size of the input image by reducing the number of parameters and computations of the network \cite{RN2}. We use three pooling layers with filters of size 3x3 applied with a stride of 0 and a padding set to \textit{same}. This downsamples every depth slice in the input by 2 along both width and height, discarding 50\% of the activations. \\
+\noindent It is common to add a pooling layer in-between the convolutional layers periodically. The function exists to avoid overfitting and step by step reduce the size of the input image by reducing the number of parameters and computations of the network \cite{RN2}. Anyways as mentioned earlier we decided against pooling layers as discussed in our \hyperref[subsec:ModelArchitecture]{Model Architecture} Section.\\
 \subsubsection{Fully-Connected Layers}
 \noindent The Dense layer is the last layer of our model. It is also called the \textit{fully connected layer}. Neurons in the fully connected layer have full connections to all activations in the previous layer, as in the normal neural networks. Their activation functions will then be computed by a matrix multiplication which is followed by a bias offset. 
 For the ten different animals we respectively have ten fully connected neurons in the dense layer. \\
