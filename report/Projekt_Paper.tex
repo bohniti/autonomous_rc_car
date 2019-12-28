@@ -113,6 +113,7 @@ Acc(f,D) = \frac{1}{m}\sum_{m}^{i=1} \mathbb{I} \left [ y^{(i)} =f(x^{()i)})\rig
 CNN's and classical feed-forward neuronal networks differ in their basis of calculation. Feed-forward neural networks are using matrix multiplication, whereas CNN's are using convolutions. Convolutional layers, pooling layers, and fully-connected layers are specific layers for a CNN \cite{LeCun1998}. \\
 
 \subsubsection{Model Architecture}
+\label{subsec:ModelArchitecture}
 For our model, we choose pretty much the underlying implementation of the official website. It is an implementation of an architecture which is introduced by a group of researches which working for Nvidia. Their study showed that it is possible to train a model which can be used for autonomous driving. Especially the researchers showed that they are using a small amount of labelled data — more preseily,   only a few pictures from a short time of driving, where the images are marked with the direction in which the vehicle should drive\cite{LearningForSelf-DrivingCars}. As in our \hyperref[sec:LiteratureSurvey]{Literature Survey} mentioned Christian Friedrich Coors implemented the model before.  As he said, the model has 266.628 parameters which can be trained \cite{Coors}. The architecture u can see in Figure \ref{fig:Archi}.
 
 \begin{figure}
@@ -153,7 +154,7 @@ In picture \ref{featuremap} can be seen a calculation example of how convolution
 This represents the 64 first feature maps of a random picture from the dataset. We can observe that the filters already focus on certain points on the cat's body. We further used this feature map as input for the second CNN layer. The output of the second feature map (figure \ref{featuremap2}) further sharpens the filters. For example we can see that feature map 2 until 5 focuses on the cat itself, whereas map 8 puts its focus on the cats ears. \\
 
 \subsubsection{Pooling Layers}
-\noindent It is common to add a pooling layer in-between the convolutional layers periodically. The function exists to avoid overfitting and step by step reduce the size of the input image by reducing the number of parameters and computations of the network \cite{RN2}. We use three pooling layers with filters of size 3x3 applied with a stride of 0 and a padding set to \textit{same}. This downsamples every depth slice in the input by 2 along both width and height, discarding 50\% of the activations. \\
+\noindent It is common to add a pooling layer in-between the convolutional layers periodically. The function exists to avoid overfitting and step by step reduce the size of the input image by reducing the number of parameters and computations of the network \cite{RN2}. Anyways as mentioned earlier we decided against pooling layers as discussed in our \hyperref[subsec:ModelArchitecture]{Mode lArchitecture} Section.\\
 \subsubsection{Fully-Connected Layers}
 \noindent The Dense layer is the last layer of our model. It is also called the \textit{fully connected layer}. Neurons in the fully connected layer have full connections to all activations in the previous layer, as in the normal neural networks. Their activation functions will then be computed by a matrix multiplication which is followed by a bias offset. 
 For the ten different animals we respectively have ten fully connected neurons in the dense layer. \\
