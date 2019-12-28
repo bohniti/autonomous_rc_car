@@ -87,26 +87,37 @@ ToDo \\
 \section{Hardware}
 
 \subsection{RC Car}
+Our car is the \textit{s-idee® 18175 9115 RC Car Buggy waterproof monstertruck 1:12}.
+The remote control car is the heart of our project. Eventhough basically every remote control car can be used to drive autonomously, it is a better choice to buy a real model car, because a real servomotor makes it much easier. The cost of a real model RC car is approximately 100 euros. It is neccessary that the car is quite large, because we need to store the Raspberry Pi, the camera and a powerbank for the Pi onto the car. To keep everything in position, we attached it with a 3D print of a holding system, which was tailored by us for our car. \\
 
 \subsubsection{Technical Details}
-ToDo \\
+Our car comes with 2,4 GHz type of the remote control and is 40 km/h fast. It only weights 1,88 Kg. Since the car is normaled steered by the remote control, in our case we use the Raspberry Pi to drive it autonomously. The battery is a 9,6V with 800 mah, which gives us plenty of time to capture pictures of the track to train the model on. The car like casing is easy to remove, to attach the Raspberry Pi and the rest onto it.
 
 \subsubsection{Servomotor}
-ToDo \\
+
+The servomotor is the key to connect the Raspberry Pi with the RC car. A normal servomotor has 2 times 3 pins connect to it. One responsible for the steering and the other one for the speed. The steering is managed by a so-called PWM (Pulse Width Modulation) as shown in figure \ref{pwm}. Depending on the length of the signal, the steering performs a certain degree of changing its ankle. We need to configure and setup the optimum values for our car in the Python \textit{steering} file. \\
+
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=2.5in]{photo/pwm}\\
+  \caption{PWM signal}\label{pwm}
+  \end{center}
+\end{figure}
 
 \subsection{Raspberry Pi}
 Even though by now the Raspberry Pi 4 is out, we still use the Raspberry Pi 3B+, because we are sure that it is compatible with our other microcontrollers and software. \\
-We use a 16GB SanDisc to store the operating system and the machine learning model on the Raspberry Pi. 
+We use a 16GB SanDisc to store the operating system and the machine learning model on the Raspberry Pi. \\
 
 \subsubsection{Technical Details}
 The Raspberry Pi 3B+ is equipped with a lot of different extensions. It has a Wi-Fi module to communicate with the Python webserver and a farely fast processor to run the neural network and classify where to drive next. The Processor is the Broadcom BCM2837B0, Cortex-A53 with 1.4GHz and it has 1GB LPDDR2 SDRAM. \\
-Furthermore for the connectivity the Pi has extended 40-pin GPIO header. The weight is only 42 gramms, which make it easy to attach it onto the RC car.
+Furthermore for the connectivity the Pi has extended 40-pin GPIO headers. The weight is only 42 gramms, which makes it easy to attach it onto the RC car. The \textit{Donkey Car Project} \cite{donkey} provides a prepared operating system for the Raspberry Pi called \textit{donkeypi}. This OS is based on the basic \textit{raspbian OS} from the Raspberry Pi company, but also includes the prepared Python files to start the webserver, read in the images and drive autonomously based on the images classified through the trained model. \\
 
 \subsubsection{Cameramodule}
-ToDo
+For our purpose we use the Raspberry Pi Camera Module 8MP v2.1. It can capture pictures with 1080p and 8 megapixel focus. We are not required to use a wider lense, because our test track is big enough. The images captured by this camera are respectively the input for the model to train with. 1080p is fairely large and would take an eternity to train, this is why we need to scale the image down to 160x120 pixels. Furthermore we use a framerate of 20, which means we capture 20 images per second.  
 
 \subsection{Servodriver}
 We use the SunFounder PCA9685. The price for this microcontroller is approximatetly 13 euro on the most famous marketplaces. The servodriver is needed to produce the PWM (Pulse width modulation) signals for our Raspberry Pi. It acts as joint for the RC cars's servomotor and the Raspberry Pi. \\
+
 \subsubsection{Technical Details}
 The SunFounder PCA9685 consists of many different Pins \cite{servo}. It is powered by the GND and the VCC pin. The VCC is uses voltage of 3-5V. Furthermore are three control pins on the board, namely the:
 
@@ -141,9 +152,35 @@ There are four pins that we need to connect from the Raspberry Pi onto the servo
 
 \section{Software Architecture}
 
+In this section we give a quick overview in how the entire software is connected to each other (Figure \ref{webserver}).
+
 \subsection{Python Files}
+
+Since our group project is based on the \textit{Donkey Self-Driving Car} \cite{donkey} Project,  we are constraint to use the same folder structure. The main structure is:
+
+\begin{itemize}
+\item management
+\item parts
+\item templates
+\item test
+\end{itemize}
+
+whereas management includes everything related to the webserver (as explained in the next subsection). The parts folder contains all the single devices related to get the car to drive by itself. Included in the parts folder is e.g. Pi Camera module, the keras neural network and the image configurations to use them as input for the neural network. 
+
 \subsection{Webserver}
+
+For the webserver we use the Python \textit{package} called \textit{Tornado}. Tornado is a basic multi purpose websocket which is open-source to use. It can be used for the bidirectional communication between the server and the browser. To receive the live transmission of the pictures of the camera module, we use the Tornado webserver. As shown in figure \ref{ebene2}, we access the webserver over the \textit{localhost} and the \textit{Port 37}. This Port is standardized by IEEE \footnote{\url{https://de.wikipedia.org/wiki/Liste_der_standardisierten_Ports}} as the \textit{TIME Protocol} and fits perfect to our requirements for tracking time intervalls.
+
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=3.5in]{photo/webserver.pdf}\\
+  \caption{Webserver Overview}\label{webserver}
+  \end{center}
+\end{figure}
+
 \subsection{Unity}
+
+ToDo
 
 \section{Deep Learning}
 \noindent To solve the image classification task, we are using a convolutional neuronal network (CNN). CNN's are a particular case of feed-forward neural networks \cite{Goodfellow-et-al-2016}. On a very fundamental level, we can say that a feed-forward neural network - as the most machine learning models - is a function \cite{RN5}. The function of a feed-forward neural network can simply be described as \(y = f(x, \o )\) . CNN's and feed-forward neural networks are estimating parameter values. So for \(y = f(x, \o )\) we estimate the parameter \(\o \) \cite{Goodfellow-et-al-2016}. Through those estimated parameter values we are receiving a function back with the smallest possible difference between the predicted output values and the defined output values. A function that measures the difference between the expected - and the defined output is a so-called loss function \cite{Goodfellow-et-al-2016}. To compare our model accuracy with other model, we are using the following evaluation criteria:
