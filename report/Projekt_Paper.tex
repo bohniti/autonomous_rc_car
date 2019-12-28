@@ -108,7 +108,14 @@ ToDo
 
 \subsection{RC Car}
 Our car is the \textit{s-idee® 18175 9115 RC Car Buggy waterproof monstertruck 1:12}.
-The remote control car is the heart of our project. Eventhough basically every remote control car can be used to drive autonomously, it is a better choice to buy a real model car, because a real servomotor makes it much easier. The cost of a real model RC car is approximately 100 euros. It is neccessary that the car is quite large, because we need to store the Raspberry Pi, the camera and a powerbank for the Pi onto the car. To keep everything in position, we attached it with a 3D print of a holding system, which was tailored by us for our car. \\
+The remote control car is the heart of our project. Eventhough basically every RC Car can be used to drive autonomously, it is a better choice to buy a real model car, because a real servomotor makes it much easier to connect the pins to. The cost of a real model RC car is approximately 100 euros and so was the price of ours. It is neccessary that the car is quite large, because we need to store the Raspberry Pi, the camera and a powerbank for the Pi onto the car without losing to much speed of the car. To keep everything in position, we attached it with a 3D print of a plastic holding-system, which was tailored by us for our car. \\
+
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=2.5in]{photo/car.jpg}\\
+  \caption{Remote Control Car}\label{car}
+  \end{center}
+\end{figure}
 
 \subsubsection{Technical Details}
 Our car comes with 2,4 GHz type of the remote control and is 40 km/h fast. It only weights 1,88 Kg. Since the car is normaled steered by the remote control, in our case we use the Raspberry Pi to drive it autonomously. The battery is a 9,6V with 800 mah, which gives us plenty of time to capture pictures of the track to train the model on. The car like casing is easy to remove, to attach the Raspberry Pi and the rest onto it.
@@ -133,10 +140,27 @@ The Raspberry Pi 3B+ is equipped with a lot of different extensions. It has a Wi
 Furthermore for the connectivity the Pi has extended 40-pin GPIO headers. The weight is only 42 gramms, which makes it easy to attach it onto the RC car. The \textit{Donkey Car Project} \cite{donkey} provides a prepared operating system for the Raspberry Pi called \textit{donkeypi}. This OS is based on the basic \textit{raspbian OS} from the Raspberry Pi company, but also includes the prepared Python files to start the webserver, read in the images and drive autonomously based on the images classified through the trained model. \\
 
 \subsubsection{Cameramodule}
-For our purpose we use the Raspberry Pi Camera Module 8MP v2.1. It can capture pictures with 1080p and 8 megapixel focus. We are not required to use a wider lense, because our test track is big enough. The images captured by this camera are respectively the input for the model to train with. 1080p is fairely large and would take an eternity to train, this is why we need to scale the image down to 160x120 pixels. Furthermore we use a framerate of 20, which means we capture 20 images per second.  
+For our purpose we use the Raspberry Pi Camera Module 8MP v2.1. It can capture pictures with 1080p and 8 megapixel focus. 
+It is really easy to plug the camera onto the Raspberry Pi. The Camera plugs directly into the CSI (Camera Serial Interface) connector on the Raspberry Pi with a 15 pin Ribbon Cable. The CSI Bus can easily handle 20 to 30 FPS (frames per second). The weight of 3 gramm makes no difference for the RC Car. \\
+
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=1.5in]{photo/camera.jpg}\\
+  \caption{Raspberry Pi Camera Module}\label{camera}
+  \end{center}
+\end{figure}
+
+We are not required to use a wider lense, because our test track is big enough. The images captured by this camera are respectively the input for the model to train with. 1080p is fairely large and would take an eternity to train, this is why we need to scale the image down to 160x120 pixels. Furthermore we use a framerate of 20, which means we capture 20 images per second.  
 
 \subsection{Servodriver}
 We use the SunFounder PCA9685. The price for this microcontroller is approximatetly 13 euro on the most famous marketplaces. The servodriver is needed to produce the PWM (Pulse width modulation) signals for our Raspberry Pi. It acts as joint for the RC cars's servomotor and the Raspberry Pi. \\
+
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=2.5in]{photo/sunfounder.jpeg}\\
+  \caption{SunFounder PCA9685}\label{servodriver}
+  \end{center}
+\end{figure}
 
 \subsubsection{Technical Details}
 The SunFounder PCA9685 consists of many different Pins \cite{servo}. It is powered by the GND and the VCC pin. The VCC is uses voltage of 3-5V. Furthermore are three control pins on the board, namely the:
