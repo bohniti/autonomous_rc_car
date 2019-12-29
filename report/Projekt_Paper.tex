@@ -157,6 +157,8 @@ The Raspberry Pi 3B+ is equipped with a lot of different extensions. It has a Wi
 Furthermore for the connectivity the Pi has extended 40-pin GPIO headers. The weight is only 42 gramms, which makes it easy to attach it onto the RC car. The \textit{Donkey Car Project} \cite{donkey} provides a prepared operating system for the Raspberry Pi called \textit{donkeypi}. This OS is based on the basic \textit{raspbian OS} from the Raspberry Pi company, but also includes the prepared Python files to start the webserver, read in the images and drive autonomously based on the images classified through the trained model. \\
 
 \subsubsection{Cameramodule}
+\label{sec:cameramodule}
+
 For our purpose we use the Raspberry Pi Camera Module 8MP v2.1. It can capture pictures with 1080p and 8 megapixel focus. 
 It is really easy to plug the camera onto the Raspberry Pi. The Camera plugs directly into the CSI (Camera Serial Interface) connector on the Raspberry Pi with a 15 pin Ribbon Cable. The CSI Bus can easily handle 20 to 30 FPS (frames per second). The weight of 3 gramm makes no difference for the RC Car. \\
 
@@ -340,9 +342,43 @@ In between the convolutional layer (CNN) and the fully connected layer (Dense), 
 \section{Autonomously Driving}
 \label{sec:AutonomouslyDriving}
 
+At this point our car is equipped with a fully trained model and is ready to drive. Since our neuronal network is build with Keras, the Raspberry Pi uses the KerasPilot-Part to load the trained model and evaluate the captured pictures with that. The pictures captured by the PiCamera are 160x120 pixels with 3 color channels (red, green, blue). The CNN layers which the image need to pass through are shown in figure \ref{cnn_table}.
+
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=3.5in]{photo/cnn_table.png}\\
+  \caption{CNN Table}\label{cnn_table}
+  \end{center}
+\end{figure}
+
+The network produces two different outputs:
+
+\begin{itemize}
+\item angle\_out: as PWM signal
+\item throttle\_out: for the car speed
+\end{itemize}
+
+The car speed can be set manually to a constant value. This is especially useful when we let the car drive indoors, because it cannot speed up so much as outdoors. So for our case we only depend on the angle\_out output. The High-Level-Bibliography is Keras, which is respectively based on Tensorflow. For our project we use Tensorflow 1.0, not the latest release 2.0. \\
+
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=1.3in]{photo/autonom.png}\\
+  \caption{Graph of Dataflow}\label{autonom}
+  \end{center}
+\end{figure}
+
+As already mentioned in \hyperref[cameramodule]{section PiCamera}, we use 20 FPS, so we receive 20 angle\_out outputs per second. This calculations are processed on the Raspberry Pi and the values are directly transmitted to the PCA9685 servodriver and then to the servomotor of the car. This is why the car shakes often while driving, because it receives so many new values where it needs to drive.
+
+
 \section{Evaluation}
 
 \section{Conclusion}
+As we finished the last challenge of this hard project, a feeling of relief overcame every member. It was intellectually - and all of us agree on this - one of the most difficult tasks we encountered as students. We had to face more difficulties than we expected. In the end we were very happy of the successful outcome though.
+Obviously the group spirit dependent whether the daily objectives we set were successfully reached or not. Especially in the beginning, when we did not really no how to tackle the faced problems, we were constantly nervous and in  bad mood. The closer we came to something we call a success the better was our mood. The first time we saw the car driving on its own around the corner, we were happy for days.
+We also grew together as a team. The delegation of the tasked happened according to our strengths and weaknesses. Before the project we knew each other, but we can say that after the project we know each other way better than before.
+The timespan given to us from the university of two semester was sufficient for accomplishing the main objective. The so called supervised learning on our neuronal networks was successful. For the other way to train the network, the so called reinforcement learning, the given time and/or experience we had with this technology, was not enough. Therefore we conducted a “literature survey” where we evaluated other projects which used reinforcement learning technology and analysed whether the given technology could be implemented in our project or not. 
+We learned the sophisticated interaction between different hardware components and the different software which run on them. Furthermore we got an good overview of the state of the art technology of machine learning software in general.
+Two of three members will definitely try to get a job in this area. They applied for jobs or already have a job where they have to analyse or manipulate big amounts of data.
 
 \section*{Acknowledgment}
 \noindent The authors would like to thank Prof Dr. Florian Gallwitz from the University of Applied Science - Georg Simon OHM in Nuremberg for a really good supervising of our group. 
