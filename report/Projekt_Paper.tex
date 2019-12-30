@@ -449,15 +449,40 @@ As already mentioned in \hyperref[cameramodule]{section PiCamera}, we use 20 FPS
 
 
 \section{Evaluation}
-To evaluate the convolutional neural network we set the criterion function based on if the car drives within the lanes. Since we do not use a middle-lane, but only two lanes for the border, the autonomous car should identify correctly the two border-lines. The criterion function looks like the following:
+
+Even though CNN perform a really good result in the computer vision field, it is still quite hard to decompse the decisions and the filters to understand the blackbox behind. Especially in the image recognition the filter decide randomly on which shapes and particles it is going to focus. By adding more and more layers to the neural network we make it harder and harder to interpret the parameters. In the case of a fail it is going to be very hard to evaluate the misstakes e.g. overfitting, underfitting, too much noise in the data or the task might even be too complex for the neural network. We are able to visualize the filter after for example the first filter of the convolutional neural network shown in figure \ref{filter}. It is useful to illustrate this filter, because the visualized noise could make a overfitting visible in the image. \\
+
+\subsubsection{Occlusion Maps}
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=3.5in]{photo/filter.png}\\
+  \caption{Color not interpolated filter and grayscale filter with bilinear interpolation \cite{master}}\label{filter}
+  \end{center}
+\end{figure}
+
+To evaluate the convolutional neural network with occlusion maps, we set the criterion function based on if the car drives within the lanes. Since we do not use a middle-lane, but only two lanes for the border, the autonomous car should identify correctly the two border-lines. The criterion function looks like the following:
 
 \[
     O_{i,j}= 
 \begin{cases}
-    0,& \text{if } abs(yhat_{i,j} - y) > \epsilon\\
+    0,& \text{if } abs(\hat{y}_{i,j} - y) > \epsilon\\
     1              & \text{otherwise}
 \end{cases}
 \]
+
+Where y is the angle predicted from the neural network without any occlusion and \^{y} is the regressed angle when the center of the occluding rectanle is placed at location (i, j) of the input image \cite{master}. We do not need any deeper knowledge of the neural networks architecture to understand this straight-forward process, because we only use the networks output. One of the disadvanteges of this technique is that we need to evaluate a lot of different picture to detect the important features of the image.
+
+\subsubsection{Visualizing Activations}
+
+Another easy way to evaluate our model is to show each layer's activation after every convolution. We can compute with by multiplying the the trained filters with the input data and apply the activation function onto it, for example ReLU. We get a more and more decreased set of features after each layer of the neural network. We are able to extract those activations and display them (figure \ref{activations}) as picture with the python package \textit{matplotlib}. 
+
+\subsubsection{Occlusion Maps}
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=3.5in]{photo/activations.png}\\
+  \caption{Activation features after each Layer of the NN  \cite{master} }\label{activations}
+  \end{center}
+\end{figure}
 
 \section{Conclusion}
 As we finished the last challenge of this hard project, a feeling of relief overcame every member. It was intellectually - and all of us agree on this - one of the most difficult tasks we encountered as students. We had to face more difficulties than we expected. In the end we were very happy of the successful outcome though.
