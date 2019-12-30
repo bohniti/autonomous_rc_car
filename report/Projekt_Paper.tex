@@ -21,6 +21,10 @@
 \usepackage{amsfonts}
 \hyphenation{op-tical net-works semi-conduc-tor}
 \usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{lmodern}
+
+
 
 \usepackage{xcolor}
 \definecolor{th}{RGB}{0,83,161}
@@ -242,7 +246,14 @@ The Raspberry Pi 3 model B+ has an optimum power supply opf 5V and 2.1A. To powe
 
 \section{Software Architecture}
 
-In this section we give a quick overview in how the entire software is connected to each other (Figure \ref{webserver}).
+In this section we give a quick overview in how the entire software is connected to each other (Figure \ref{webserver}). The following UML diagram shows the entire flow of the data.
+
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=3in]{photo/uml}\\
+  \caption{UML Diagram from David Ungurean \cite{master}}\label{uml}
+  \end{center}
+\end{figure}
 
 \subsection{Python Files}
 
@@ -398,6 +409,15 @@ As already mentioned in \hyperref[cameramodule]{section PiCamera}, we use 20 FPS
 
 
 \section{Evaluation}
+To evaluate the convolutional neural network we set the criterion function based on if the car drives within the lanes. Since we do not use a middle-lane, but only two lanes for the border, the autonomous car should identify correctly the two border-lines. The criterion function looks like the following:
+
+\[
+    O_{i,j}= 
+\begin{cases}
+    0,& \text{if } abs(yhat_{i,j} - y) > \epsilon\\
+    1              & \text{otherwise}
+\end{cases}
+\]
 
 \section{Conclusion}
 As we finished the last challenge of this hard project, a feeling of relief overcame every member. It was intellectually - and all of us agree on this - one of the most difficult tasks we encountered as students. We had to face more difficulties than we expected. In the end we were very happy of the successful outcome though.
