@@ -293,8 +293,37 @@ Experience can be seen as training data \cite{wang_2003} so that it is not neces
 Last but not least was an increase of computational potential. It is essential to say that this happened mostly not because of better hardware itself. Responsible is more a more advanced parallelisation technique running on the equipment. Besides the different data types like structured and unstructured data, plenty of tasks could be solved with machines which can learn from experience. To get a self-driving car, we must answer an image classification task. The camera fixed on the case of our car records images and sent them directly to the board computer. The computer has now to decide in which direction it should drive. The computers decision is based on the objects he could "see" on the picture. I more detailed and technical explanation on is given in the \hyperref[subsec:deeplearning]{Deep Learning Subsection} and the \hyperref[sec:AutonomouslyDriving]{Autonomously Driving Section}.
 \subsection{Deep Learning}
 \label{subsec:deeplearning}
-Deep Learning means we have a deep neuronal network. Per Definition, we get a deep neural network if we had more than one hidden layer in a neural network. Neural Networks are a concept in the machine learning field which try to build a program that learns like the human brain is learning. Like the human brain, such an application is made from so-called neurons. On a very fundamental level, we can say that neurons are functions \cite{RN5}. If you compare the structure of both neurons, the neurons in our brain and the technical model, which is used in neural networks, is similar. Besides of the shape of the neurons, there are considerable differences in the way the human brain works and the way the deep neural network works. With an increase in the performance of those networks, the idea of rebuilds a human brain is almost gone. Instead, we are using modern mathematical theorems and functions that could solve machine learning tasks faster even we know that it has nothing to do with the human brain.
-Deep neuronal networks as you can see in figure XY can solve different types of tasks. Today we had not just the standard neural networks as in the early beginning of there first implementation, instead, we have more advanced and complicated models. Most of them are designed to solve a specific task, and they are not able to adapt to another category of tasks. For example, Convolution Neuronal networks which are introduced in the \hyperref[subsec:cnn]{Convolutional Neural Network Section} are widespread in the are of image classification. Recurrent neuronal networks are used for text and voice recognition. So, it would not lead in better results if we use and recurrent neural networks which perform very good at text recognition for an image classification task, even then when we had just a  convolutional neuronal network that performs not so well.
+Deep Learning means we have a deep neuronal network. Per Definition, we get a deep neural network if we had more than one hidden layer in a neural network. Neural Networks are a concept in the machine learning field which try to build a program that learns like the human brain is learning. Like the human brain, such an application is made from so-called neurons. On a very fundamental level, we can say that neurons are functions \cite{RN5}. If you compare the structure of both neurons, the neurons in our brain (figure \ref{fig:bioneuron}
+%========================================================================
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=3in]{photo/neuron-brain}\\
+  \caption{A cartoon drawing of a biological neuron }
+  \label{fig:bioneuron}
+  \end{center}
+\end{figure}
+%========================================================================
+and the technical model (figure \ref{fig:mathneuron},
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=3in]{photo/neuron_model}\\
+  \caption{A cartoon drawing of a biological neurons mathematical model}
+  \label{fig:mathneuron}
+  \end{center}
+\end{figure}
+%========================================================================
+which is used in neural networks, is similar. Besides the shape of the neurons, there are considerable differences in the way the human brain works and the way the deep neural network works. With an increase in the performance of those networks, the idea of rebuilds a human brain is almost gone. Instead, we are using modern mathematical theorems and functions that could solve machine learning tasks faster even we know that it has nothing to do with the human brain. Deep neuronal networks as you can see in figure \ref{fig:neural-network}
+%========================================================================
+and the technical model (figure \ref{fig:mathneuron},
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=3in]{photo/neural-network}\\
+  \caption{A 3-layer neural network with three inputs, two hidden layers of 4 neurons each and one output layer. Notice that in both cases there are connections (synapses) between neurons across layers, but not within a layer.}
+  \label{fig:neural-network}
+  \end{center}
+\end{figure}
+%========================================================================
+ can solve different types of tasks. Today we had not just the standard neural networks as in the early beginning of there first implementation. Instead, we have more advanced and complicated models. Most of them are designed to solve a specific task, and they are not able to adapt to another category of tasks. For example, Convolution Neuronal networks which are introduced in the \hyperref[subsec:cnn]{Convolutional Neural Network Section} are widespread in the are of image classification. Recurrent neuronal networks are used for text and voice recognition. So, it would not lead in better results if we use and recurrent neural networks which perform very good at text recognition for an image classification task, even then when we had just a convolutional neuronal network that performs not so well.
 \subsection{Convolutional Neural Networks}
 \label{subsec:cnn}
 \noindent To solve the image classification task, we are using a convolutional neuronal network (CNN). Convolutional Neural Networks are a particular case of feed-forward neural networks \cite{Goodfellow-et-al-2016}. . The function of a feed-forward neural network can simply be described as \(y = f(x, \o )\) . CNN's and feed-forward neural networks are estimating parameter values. So for \(y = f(x, \o )\) we estimate the parameter \(\o \) \cite{Goodfellow-et-al-2016}. Through those estimated parameter values we are receiving a function back with the smallest possible difference between the predicted output values and the defined output values. A function that measures the difference between the expected - and the defined output is a so-called loss function \cite{Goodfellow-et-al-2016}. To compare our model accuracy with other model, we are using the following evaluation criteria:
@@ -305,46 +334,45 @@ Acc(f,D) = \frac{1}{m}\sum_{m}^{i=1} \mathbb{I} \left [ y^{(i)} =f(x^{()i)})\rig
 CNN's and classical feed-forward neuronal networks differ in their basis of calculation. Feed-forward neural networks are using matrix multiplication, whereas CNN's are using convolutions. Convolutional layers, pooling layers, and fully-connected layers are specific layers for a CNN \cite{LeCun1998}. \\
 \subsubsection{Model Architecture}
 \label{subsec:ModelArchitecture}
-For our model, we choose pretty much the underlying implementation of the official Donkeycar website. It is an implementation of an architecture which is introduced by a group of researches which working for Nvidia. Their study showed that it is possible to train a model which can be used for autonomous driving. Especially the researchers showed that they are using a small amount of labelled data — more preseily,   only a few pictures from a short time of driving, where the images are marked with the direction in which the vehicle should drive\cite{LearningForSelf-DrivingCars}. As in our \hyperref[sec:LiteratureSurvey]{Literature Survey} mentioned Christian Friedrich Coors implemented the model before.  As he said, the model has 266.628 parameters which can be trained \cite{Coors}. The architecture u can see in Figure \ref{fig:Archi}.
-
+For our model, we choose pretty much the underlying implementation of the official  website. It is an implementation of an architecture which is introduced by a group of researches which working for Nvidia. Their study showed that it is possible to train a model which can be used for autonomous driving. Especially the researchers showed that Donkeycarthey are using a small amount of labelled data — more preseily,   only a few pictures from a short time of driving, where the images are marked with the direction in which the vehicle should drive\cite{LearningForSelf-DrivingCars}. As in our \hyperref[sec:LiteratureSurvey]{Literature Survey} mentioned Christian Friedrich Coors implemented the model before.  As he said, the model has 266.628 parameters which can be trained \cite{Coors}. The architecture you can see in Figure \ref{fig:Archi}.
+%========================================================================
 \begin{figure}
   \begin{center}
   \includegraphics[width=3in]{photo/CNNArchitecture.png}\\
-  \caption{Model Architecure from the Nvidia Research Team \cite{LearningForSelf-DrivingCars}}\label{featuremap}
+  \caption{Model Architecure from the Nvidia Research Team \cite{LearningForSelf-DrivingCars}}
   \label{fig:Archi}
   \end{center}
 \end{figure}
-
-So, ou
+%========================================================================
 The Team around Nvidia concluded in their paper that there is more work to do for getting the driving process more stable \cite{LearningForSelf-DrivingCars}. Jelena Kocić and their team focused on this task and got a better result. They reached their goal by using other building blocks like a pooling layer. They mentioned that the training process and the driving process is more computational intense. Because of our small hardware resources at the raspberry pi is why we decided to use the first model. \cite{AutomotivePlatformsAutonomousDriving}
 \subsubsection{Convolutional Layers}
 \noindent The convolutional Layer performs the extracting of features from the input matrix into a feature map. For this procedure, we use matrix multiplication in the form of the dot product and a filter (feature detector, kernel) \cite{Goodfellow-et-al-2016}. 
-
+%========================================================================
 \begin{figure}
   \begin{center}
   \includegraphics[width=3in]{photo/cnn.png}\\
-  \caption{Feature Map derived from http://deeplearning.stanford.edu}\label{featuremap}
+  \caption{Feature Map derived from http://deeplearning.stanford.edu}
+  \label{fig:cnn}
   \end{center}
 \end{figure}
-
-In picture \ref{featuremap} can be seen a calculation example of how convolution is applied to a matrix. We are iterating with the filter over the matrix, calculating the scalar product and writing the result into a feature map. An activation function like the rectified linear unit (ReLU) normalizes the feature map after we performed the convolution. Normalization guarantees a feature map which is not a linear transformation of its input value. If this is the case, we only have a linear problem which can be easily solved, but with a wrong results. In other words, the input values get just multiplied by coefficients. Note that there are plenty of reasons for activation functions in a neuronal network. We are giving a closer look at this topic at our section \hyperref[sec:activationFunctions]{"Activation Functions"}. In Figure \ref{featuremap1} you can see how our pictures had changed after applying the first convolutional layer, before and after doing normalization.  \\
-
+%========================================================================
+In picture \ref{fig:cnn} can be seen a calculation example of how convolution is applied to a matrix. We are iterating with the filter over the matrix, calculating the scalar product and writing the result into a feature map. An activation function like the rectified linear unit (ReLU) normalizes the feature map after we performed the convolution. Normalization guarantees a feature map which is not a linear transformation of its input value. If this is the case, we only have a linear problem which can be easily solved, but with a wrong results. In other words, the input values get just multiplied by coefficients. Note that there are plenty of reasons for activation functions in a neuronal network. We are giving a closer look at this topic at our section \hyperref[sec:activationFunctions]{"Activation Functions"}. In Figure \ref{featuremap1} you can see how our pictures would change after applying the first convolutional layer. \\
+%========================================================================
 \begin{figure}
   \begin{center}
-  \includegraphics[width=3in]{photo/feature_map1.png}\\
+  \includegraphics[width=3in]{photo/frist-cl}\\
   \caption{Feature Map from CNN Layer 1}\label{featuremap1}
   \end{center}
 \end{figure}
-
+%========================================================================
 \begin{figure}
   \begin{center}
-  \includegraphics[width=3in]{photo/feature_map2.png}\\
-  \caption{Feature Map from CNN Layer 2}\label{featuremap2}
+  \includegraphics[width=3in]{photo/layer2}\\
+  \caption{Feature Map from the last CNN Layer}\label{featuremap2}
   \end{center}
 \end{figure}
-
-This represents the 64 first feature maps of a random picture from the dataset. We can observe that the filters already focus on certain points on the cat's body. We further used this feature map as input for the second CNN layer. The output of the second feature map (figure \ref{featuremap2}) further sharpens the filters. For example we can see that feature map 2 until 5 focuses on the cat itself, whereas map 8 puts its focus on the cats ears. \\
-
+%========================================================================
+This represents the 64 first feature maps of a random picture from the dataset. We can observe that the filters already focus on certain points at the rooms environment. We further used this feature map as input for the second CNN layer. The output of the last feature map u could see in(figure \ref{featuremap2}.\\
 \subsubsection{Pooling Layers}
 \noindent It is common to add a pooling layer in-between the convolutional layers periodically. The function exists to avoid overfitting and step by step reduce the size of the input image by reducing the number of parameters and computations of the network \cite{RN2}. Anyways as mentioned earlier we decided against pooling layers as discussed in our \hyperref[subsec:ModelArchitecture]{Model Architecture} Section.\\
 \subsubsection{Fully-Connected Layers}
