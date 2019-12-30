@@ -108,6 +108,25 @@ In the following we explain to the reader exactly how we did it. We hope the rea
 \section{Literature Survey}
 \label{sec:LiteratureSurvey}
 
+\subsection{The Level of autonomously driving Cars}
+
+There are defined five levels of vehicle autonomy from the National Highway and Traffic Safety Administration (NHTSA).
+
+\begin{itemize}
+\item \textit{no automation (level 0)}: The car is driven by a human
+\item \textit{driver assistance (level 1)}: There is a single vehicle control system like steering into the middle of the lane or braking the tires when the distance to the car in front is too close, but only one at a time.
+ \item \textit{partial automation (level 2)}: The car performs the accelerating and decelerating by itself. The human is still supposed to look over the environment and be aware of the surroundings. \\
+Example: Tesla Autopilot \cite{tesla}	
+\item \textit{conditional automation (level 3)}: The autonomous car takes the entire control even under special occurrences like animal on the road. The human is still expected to intervene when it is required. \\
+Example: Google Waymo \textit{self-driving car} \cite{google}
+\item \textit{high automation (level 4)}: The car takes over the entire control of the driving system and the human is not required to pay any attention to the environment. The car is expected to to perform all driving tasks safely and without special circumstances. \\
+Example: Waymo announced in 2017 that they are testing \textit{level 4} driving \cite{google2}
+\item \textit{full automation (level 5)}: The car takes over the entire control of the driving system and the human is not required to pay any attention to the environment, nor does need to be inside of the car. 
+
+
+
+\end{itemize}
+
 \subsection{Reinforcement Learning}
 
 The two big approaches in the Machine Learning field are the supervised and unsupervised learning. Supervised learning requires labeled data, this means the data is already tagged with the \textit{correct answer}. The model learnes on the data and their labels and predicts an output based on that. Whereas the unsupervised learning describes the way in which the model works on its own to discover the information. It deals mostly with unlabeled data and gets penalized if it produces wrong results. The unsupervised learning has some prime advantages over the supervised learning:
@@ -123,9 +142,13 @@ They use the DDQN algorithm to perform the reinforcement Learning. DDQN stands f
 
 \section{Hardware}
 
+Normally the car is is driven by a remote control which sends signals to the steer of the wheels depending on which buttons the controlling user pushes. In our case, we want to control the car only with the computer itself. To fulfill that, we will need to buy some extra parts, rewire the remot control car’s servomotor and connect it to the onboard Raspberry Pi 3B computer. We will also need a camera to capture the images and a servomotor controller.
+
 \subsection{RC Car}
 Our car is the \textit{s-idee® 18175 9115 RC Car Buggy waterproof monstertruck 1:12}.
-The remote control car is the heart of our project. Eventhough basically every RC Car can be used to drive autonomously, it is a better choice to buy a real model car, because a real servomotor makes it much easier to connect the pins to. The cost of a real model RC car is approximately 100 euros and so was the price of ours. It is neccessary that the car is quite large, because we need to store the Raspberry Pi, the camera and a powerbank for the Pi onto the car without losing to much speed of the car. To keep everything in position, we attached it with a 3D print of a plastic holding-system, which was tailored by us for our car. \\
+The remote control car is the heart of our project. Eventhough basically every RC Car can be used to drive autonomously, it is a better choice to buy a real model car, because a real servomotor makes it much easier to connect the pins to. The car’s ESC (electronic speed controller) must be apart from its signal receiver.
+The steering servo and the ESC must be connectable to the servomotor controller in order for the Raspberry Pi to fully control both. It is an advantage if the ESC supports fine-tuning of the steering angle to drive the car more precisely. 
+The cost of a real model RC car is approximately 100 euros and so was the price of ours. It is neccessary that the car is quite large, because we need to store the Raspberry Pi, the camera and a powerbank for the Pi onto the car without losing to much speed of the car. To keep everything in position, we attached it with a 3D print of a plastic holding-system, which was tailored by us for our car. \\
 
 \begin{figure}
   \begin{center}
@@ -149,6 +172,7 @@ The servomotor is the key to connect the Raspberry Pi with the RC car. A normal 
 \end{figure}
 
 \subsection{Raspberry Pi}
+Our group project aims to be affordable, so we chose the Raspberry PI 3 model B+. There would be better onboard computer such as the \textit{NVIDIA DRIVE PX Pegasus} for larger projects, but the computing power exceeds our requirements by far.
 Even though by now the Raspberry Pi 4 is out, we still use the Raspberry Pi 3B+, because we are sure that it is compatible with our other microcontrollers and software. \\
 We use a 16GB SanDisc to store the operating system and the machine learning model on the Raspberry Pi. \\
 
@@ -190,7 +214,7 @@ The SunFounder PCA9685 consists of many different Pins \cite{servo}. It is power
 \item OE - Output enable 
 \end{itemize}
 
-\subsection{Cable Management}
+\subsection{Cable Management and Battery}
 \subsubsection{Servomotor to Servodriver}
 A real model car has always a servomotor as motor. This servomotor receives input from two pins and each of the two are powered seperatly with V+ and the GND pin. 
 So in total the servomotor has six pins. Whereas the servodriver has 3x16 rows of pins available on it. Each are the three output pins:
@@ -211,7 +235,10 @@ We connect the servomotor pins accordingly onto two of the rows of the servodriv
 \end{figure}
 
 \subsubsection{Servodriver to Raspberry Pi}
-There are four pins that we need to connect from the Raspberry Pi onto the servodriver. Two out of those four pins are just for the power supply. We connect the 5V pin from the raspberry Pi to the VCC pins, which accordingly powers the SunFounder servodriver. To make a power supply work we always need the ground pin (GND) as well. The other two pins communicate the data from Raspberry Pi to servodriver and vice versa. The communication pins work with the I2C bussystem, which is used by the SDL (serial data) pin and the SCL (serial clock). The SDL 10Bit adressing bus sends the data and the SCL sets up the clocking time respectively. Both the Raspberry Pi and the servodriver have the SDL and the SCL connector pins, so we can easily plug them in. 
+There are four pins that we need to connect from the Raspberry Pi onto the servodriver. Two out of those four pins are just for the power supply. We connect the 5V pin from the raspberry Pi to the VCC pins, which accordingly powers the SunFounder servodriver. To make a power supply work we always need the ground pin (GND) as well. The other two pins communicate the data from Raspberry Pi to servodriver and vice versa. The communication pins work with the I2C bussystem, which is used by the SDL (serial data) pin and the SCL (serial clock). The SDL 10Bit adressing bus sends the data and the SCL sets up the clocking time respectively. Both the Raspberry Pi and the servodriver have the SDL and the SCL connector pins, so we can easily plug them in. \\
+
+\subsubsection{Battery}
+The Raspberry Pi 3 model B+ has an optimum power supply opf 5V and 2.1A. To power it while it is connected to the RC Car, we use the powerbank from the company \textit{Anker} with \textit{20000mAh}. It provides a 2.1A and 5V output which fully fulfilles all the Raspberry Pi's power requirements.
 
 \section{Software Architecture}
 
