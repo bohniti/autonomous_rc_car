@@ -91,7 +91,7 @@
 \maketitle
 % === ABSTRACT 
 \begin{abstract}
-For our group IT-project at the \textit{University of Applied Science Georg Simon OHM}, we built an autonomously driving remote control car. To accomplish this project, we used the framework \textit{DonkeyCar}. Supervised learning is the primary component, but we provide related work and projects to compare this project with the \textit{state-of-the-art} Reinforcement Learning. We explain how to connect the car with the microcontrollers and cables, to be able to rebuild this project. Every single component will be introduced in an appropriate complexity for non-electrical-engineers.  The neural network is a \textit{VGG16}-Network, which will be explained with all details and parts to understand the networks' architecture fully. We further provide information about how the car can be driving with the webserver. The Report gives a detailed explanation of the API and the transferred data.
+For our group IT-project at the \textit{University of Applied Science Georg Simon OHM}, we built an autonomously driving remote control car. To accomplish this project, we used the framework \textit{DonkeyCar}. Supervised learning is the primary component, but we provide related work and projects to compare this project with the \textit{state-of-the-art} Reinforcement Learning. We explain how to connect the car with the microcontrollers and cables, to do a full reverse-engineering on project. Every single component will be introduced in an appropriate complexity for non-electrical-engineers.  The neural network is a \textit{VGG16}-Network, which will be explained with all details and parts to understand the networks' architecture fully. We further provide information about how the car can be driving with the webserver. The Report gives a detailed explanation of the API and the transferred data.
 \end{abstract}
 % === KEYWORDS 
 \begin{IEEEkeywords}
@@ -102,14 +102,12 @@ For our group IT-project at the \textit{University of Applied Science Georg Simo
 % === I. Project background and motivation
 \section{Project background and motivation}
 \label{sec:backgroundMotivation}
-We decided to commit ourselves to this kind of project, because we are interested in many aspects related to machine learning. We knew that our skills and knowledge were at the starting point not deep enough, but after successfully completing this project within two semesters we gained a lot of information and understand everything perfectly now. Along the many hours we spent, we had to learn new things and we can say with some proud that we managed to make the car drive autonomously - with a lot of effort though.
-It is known, that the car industry(especially in Germany) undergoes currently a shift towards electric and autonomous-driving cars. The old engine-driven cars seem to be \textit{old technology}. For three eager students who are interested in informatics and everything which is related to computers, a new opportunity arose and is still arising. Especially in the area of autonomous-driving cars, companies invest a lot of money and time. They also search for talents which could make the difference in the future. It was especially hard in the beginning to split the responsibilites and figure out who takes care of which element in the project. Even the first car we bought was not compatible to the hardware we bought(Raspberry Pi 3B+, Servodriver, e.g.). That did not stop us from learning about the hardware and the software we wanted to use more precisely. How we combine the hardware with the right software, so that the car can move on its own, was one of the most exciting and interesting aspects we wanted to explore.
-But in the end, an essential aspect and the reason why we wanted to do the project in the first place, was the software - especially: the neuronal networks, machine- and deep learning software. This area can not only be used for cars and hardware-related problems, but It is also used for understandable software such as movie recommendations in e.g. the Netflix interface.
+We decided to commit ourselves to this kind of project because we are interested in many aspects related to machine learning. We knew that our skills and knowledge were at the starting point not deep enough, but after completing this project within two semesters, we gained a lot of information and understood the details of machine learning more as before. Along the many hours we spent, we had to learn new things, and we can say with some proud that we managed to make the car drive autonomously - with a lot of effort though.
+It is known that the car industry(especially in Germany) undergoes a shift towards electric and autonomous-driving cars currently. The old engine-driven vehicles seem to be \textit{outdated technology}. For three eager students who are interested in computer science and everything related to it, a new opportunity arose and is still occurring. Especially in the area of autonomous-driving cars, companies invest a lot of money and time. They also search for talents which could make a difference in the future. It was especially hard, in the beginning, to split the responsibilities and figure out who takes care of which element in the project. Even the first car we bought was not compatible with the hardware we purchased (Raspberry Pi 3B+, Servodriver, e.g.). That did not stop us from learning about the equipment and the software we wanted to use more precisely. How we combine the hardware with the right software, so that the car can move on its own, was one of the most exciting and exciting aspects we wanted to explore.
+But in the end, an essential aspect and the reason why we wanted to do the project in the first place, was the software - especially: the neuronal networks, machine- and deep learning software. This area can not only be used for cars and hardware-related problems, but it is also used for understandable software such as movie recommendations in, e.g. the Netflix interface.
 The main question we asked ourselves was: \textit{How can we teach our software to steer a car autonomously with the right velocity on a defined road with the help of images we fed into the database?} In the following, we explain to the reader exactly how we did it. We hope the reader enjoys the topic as much as we did along the hard but rewarding way.
-
 \section{Literature Survey}
 \label{sec:LiteratureSurvey}
-
 \subsection{The Level of autonomously driving Cars}
 Let us start the survey with defining the autonomously driving itself first. Since this kind of driving evolved within a long period of time, different levels of autonomous driving have been invented and get officially declared. 
 There are defined five levels of vehicle autonomy from the National Highway and Traffic Safety Administration (NHTSA) \footnote{\url{https://www.truecar.com/blog/5-levels-autonomous-vehicles/}}.
@@ -124,21 +122,14 @@ Example: Google Waymo \textit{self-driving car} \cite{google}
 \item \textit{Level 4 - High Automation}: The car takes over the entire control of the driving system and the human is not required to pay any attention to the environment. The car is expected to to perform all driving tasks safely and without special circumstances. \\
 Example: Waymo announced in 2017 that they are testing \textit{level 4} driving \cite{google2}
 \item \textit{Level 5 - Full Automation}: The car takes over the entire control of the driving system and the human is not required to pay any attention to the environment, nor does need to be inside of the car. 
-
-
-
 \end{itemize}
-
 \subsection{Reinforcement Learning}
-
 The two significant approaches in the Machine Learning field are supervised and unsupervised learning. Supervised learning requires labelled data, and this means the data is already tagged with the \textit{correct answer}. The model learns on the data and their labels and predicts an output based on that. Whereas the unsupervised learning describes how the model works on its own to discover the information. It deals mostly with unlabeled data and gets penalized if it produces wrong results. Unsupervised learning has some prime advantages over supervised learning:
-
 \begin{itemize}
 \item Finds all kind of unknown patterns: Unknown objects on the road, broken streets
 \item Optimizes the performance criteria with the use of experience
 \item Solves various types of real-world problems, such as autonomous driving
 \end{itemize}
-
 We found that a team from the North China University of Technology already approached the try to drive the donkey car autonomously \cite{reinforcement}. The team used the \textit{gym environment} from OpenAI \footnote{\url{https://gym.openai.com/}}. This open-source project from OpenAI allows building relatively easy penalizing models to implement reinforcement Learning. OpenAI provides plenty of API's such as reset(), step() or is\_game\_over(). These methods are the core of the model to recognize its faults. \\
 They use the DDQN algorithm to perform reinforcement Learning. DDQN stands for Deep Reinforcement Learning with Double Q-learning \cite{reinforcement2} developed by a team of researchers at \textit{Google DeepMind}. Explaining how this algorithm works would exceed the limits of this paper, but the final output of the team \cite{reinforcement} was autonomously driving donkey car. The training process was fairly slow, and it didn't drive completely exact, but the experiment shows that reinforcement Learning can be implemented together with the donkey car quite easily.
 \section{Hardware}
@@ -172,10 +163,8 @@ The Raspberry Pi 3B+ is equipped with a lot of different extensions. It has a Wi
 Furthermore, for the connectivity, the Pi has extended 40-pin GPIO headers. The weight is only 42 grams, which makes it easy to attach it onto the RC car. The \textit{Donkey Car Project} \cite{donkey} provides a prepared operating system for the Raspberry Pi called \textit{donkeypi}. This OS is based on the basic \textit{raspbian OS} from the Raspberry Pi company, but also includes the prepared Python files to start the webserver, read in the images and drive autonomously based on the images classified through the trained model. \\
 \subsubsection{Cameramodule}
 \label{sec:cameramodule}
-
-For our purpose we use the Raspberry Pi Camera Module 8MP v2.1. It can capture pictures with 1080p and 8 megapixel focus. 
-It is really easy to plug the camera onto the Raspberry Pi. The Camera plugs directly into the CSI (Camera Serial Interface) connector on the Raspberry Pi with a 15 pin Ribbon Cable. The CSI Bus can easily handle 20 to 30 FPS (frames per second). The weight of 3 gramm makes no difference for the RC Car. \\
-
+For our purpose, we use the Raspberry Pi Camera Module 8MP v2.1. It can capture pictures with 1080p and 8-megapixel focus. 
+It is straightforward to plug the camera onto the Raspberry Pi. The camera connects directly into the CSI (Camera Serial Interface) connector on the Raspberry Pi with a 15 pin Ribbon Cable. The CSI Bus can easily handle 20 to 30 FPS (frames per second). The weight of 3 grammes makes no difference for the RC Car. \\
 \begin{figure}
   \begin{center}
   \includegraphics[width=1.5in]{photo/camera.jpg}\\
@@ -183,10 +172,10 @@ It is really easy to plug the camera onto the Raspberry Pi. The Camera plugs dir
   \end{center}
 \end{figure}
 
-We are not required to use a wider lense, because our test track is big enough. The images captured by this camera are respectively the input for the model to train with. 1080p is fairely large and would take an eternity to train, this is why we need to scale the image down to 160x120 pixels. Furthermore we use a framerate of 20, which means we capture 20 images per second.  
+We are not required to use a wider lens because our test track is big enough. The images captured by this camera are sequential to the input for the model to train. 1080p is relatively large and would take an eternity to train; this is why we need to scale the image down to 160x120 pixels. Furthermore, we use a framerate of 20, which means we capture 20 images per second.  
 
 \subsection{Servodriver}
-We use the SunFounder PCA9685. The price for this microcontroller is approximatetly 13 euro on the most famous marketplaces. The servodriver is needed to produce the PWM (Pulse width modulation) signals for our Raspberry Pi. It acts as joint for the RC cars's servomotor and the Raspberry Pi. \\
+We use SunFounder PCA9685. The price for this microcontroller is approximately 13 euro on the most famous marketplaces. The servo driver is needed to produce the PWM (Pulse width modulation) signals for our Raspberry Pi. It acts as joint for the RC cars' servomotor and the Raspberry Pi. \\
 
 \begin{figure}
   \begin{center}
@@ -196,7 +185,7 @@ We use the SunFounder PCA9685. The price for this microcontroller is approximate
 \end{figure}
 
 \subsubsection{Technical Details}
-The SunFounder PCA9685 consists of many different Pins \cite{servo}. It is powered by the GND and the VCC pin. The VCC is uses voltage of 3-5V. Furthermore are three control pins on the board, namely the:
+he SunFounder PCA9685 consists of many different Pins \cite{servo}. The GND and the VCC pin to power it. The VCC has used the voltage of 3-5V. Furthermore are three control pins on the board, namely the:
 
 \begin{itemize}
 \item SCL - I2C clock pin
@@ -206,8 +195,8 @@ The SunFounder PCA9685 consists of many different Pins \cite{servo}. It is power
 
 \subsection{Cable Management and Battery}
 \subsubsection{Servomotor to Servodriver}
-A real model car has always a servomotor as motor. This servomotor receives input from two pins and each of the two are powered seperatly with V+ and the GND pin. 
-So in total the servomotor has six pins. Whereas the servodriver has 3x16 rows of pins available on it. Each are the three output pins:
+A real model car always has a servomotor as a motor. This servomotor receives input from two pins, and each of the two is powered separately with V+ and the GND pin. 
+So in total, the servomotor has six pins. Whereas the servo driver has 3x16 rows of pins available on it.  The three following pins are responsible for the output:
 
 \begin{itemize}
 \item V+ - Power supply
@@ -215,7 +204,7 @@ So in total the servomotor has six pins. Whereas the servodriver has 3x16 rows o
 \item PWM
 \end{itemize}
 
-We connect the servomotor pins accordingly onto two of the rows of the servodriver. This six pins in total control the entire behavior of the car. One of the three-pin-blocks is responsible for the steering and the other one is responsible for the speed of the car. \\
+We connect the servomotor pins accordingly onto two of the rows of the servo driver. This six pins in total control the entire behaviour of the car. One of the three-pin-blocks is responsible for the steering, and the other one is responsible for the speed of the vehicle. \\
 
 \begin{figure}
   \begin{center}
@@ -225,14 +214,12 @@ We connect the servomotor pins accordingly onto two of the rows of the servodriv
 \end{figure}
 
 \subsubsection{Servodriver to Raspberry Pi}
-There are four pins that we need to connect from the Raspberry Pi onto the servodriver. Two out of those four pins are just for the power supply. We connect the 5V pin from the raspberry Pi to the VCC pins, which accordingly powers the SunFounder servodriver. To make a power supply work we always need the ground pin (GND) as well. The other two pins communicate the data from Raspberry Pi to servodriver and vice versa. The communication pins work with the I2C bussystem, which is used by the SDL (serial data) pin and the SCL (serial clock). The SDL 10Bit adressing bus sends the data and the SCL sets up the clocking time respectively. Both the Raspberry Pi and the servodriver have the SDL and the SCL connector pins, so we can easily plug them in. \\
-
+There are four pins that we need to connect from the Raspberry Pi onto the servo driver. Two out of those four pins are just for the power supply. We link the 5V pin from the Raspberry Pi to the VCC pins, which accordingly powers the SunFounder servo driver. To make a power supply work, we always need the ground pin (GND) as well. The other two pins communicate the data from Raspberry Pi to servo driver and vice versa. The communication pins work with the I2C bus system, which is used by the SDL (serial data) pin and the SCL (serial clock). The SDL 10Bit addressing bus sends the data, and the SCL sets up the clocking time, respectively. Both the Raspberry Pi and the servo driver have the SDL and the SCL connector pins, so we can easily plug them in. 
 \subsubsection{Battery}
-The Raspberry Pi 3 model B+ has an optimum power supply opf 5V and 2.1A. To power it while it is connected to the RC Car, we use the powerbank from the company \textit{Anker} with \textit{20000mAh}. It provides a 2.1A and 5V output which fully fulfilles all the Raspberry Pi's power requirements.
-
+The Raspberry Pi 3 Model B+ has an optimum power supply of 5V and 2.1A.  A power bank is responsible for the power of the vehicle.  We use the power bank from the company \textit{Anker} with \textit{20000mAh}. It provides a 2.1A and 5V output which fully fulfils all the Raspberry Pi's power requirements. \\
 \section{Software Architecture}
 
-In this section we give a quick overview in how the entire software is connected to each other (Figure \ref{webserver}). The following UML diagram shows the entire flow of the data.
+In this section, we give a quick overview of how the entire software is connected (Figure \ref{webserver}). The following UML diagram shows the whole flow of the data.
 
 \begin{figure}
   \begin{center}
@@ -243,7 +230,7 @@ In this section we give a quick overview in how the entire software is connected
 
 \subsection{Python Files}
 
-Since our group project is based on the \textit{Donkey Self-Driving Car} \cite{donkey} Project,  we are constraint to use the same folder structure. The main structure is:
+The \textit{Donkey Self-Driving Car} \cite{donkey} Project is the basis for our group Project. So,  we are constraint to use the same folder structure, which is:
 
 \begin{itemize}
 \item management
@@ -252,11 +239,11 @@ Since our group project is based on the \textit{Donkey Self-Driving Car} \cite{d
 \item test
 \end{itemize}
 
-whereas management includes everything related to the webserver (as explained in the next subsection). The parts folder contains all the single devices related to get the car to drive by itself. Included in the parts folder is e.g. Pi Camera module, the keras neural network and the image configurations to use them as input for the neural network. 
+Whereas management includes everything related to the webserver (as explained in the next subsection). The parts folder contains all the single devices related to getting the car to drive by itself. Included in the parts folder is, e.g. Pi Camera module, the Keras neural network and the image configurations to use them as input for the neural network. 
 
 \subsection{Webserver}
 
-For the webserver we use the Python \textit{package} called \textit{Tornado}. Tornado is a basic multi purpose websocket which is open-source to use. It can be used for the bidirectional communication between the server and the browser. To receive the live transmission of the pictures of the camera module, we use the To	rnado webserver. As shown in figure \ref{ebene2}, we access the webserver over the \textit{localhost} and the \textit{Port 37}. This Port is standardized by IEEE \footnote{\url{https://de.wikipedia.org/wiki/Liste_der_standardisierten_Ports}} as the \textit{TIME Protocol} and fits perfect to our requirements for tracking time intervalls.
+For the web server we use the Python \textit{package} called \textit{Tornado}. Tornado is a basic multi-purpose WebSocket which is open-source to use. The Tornado helds the bidirectional communication between the server and the browser. To receive the live transmission of the pictures of the camera module, we use the Tornado web server. As shown in figure \ref{ebene2}, we access the webserver over the \textit{localhost} and the \textit{Port 37}. This Port is standardized by IEEE \footnote{\url{https://de.wikipedia.org/wiki/Liste_der_standardisierten_Ports}} as the \textit{TIME Protocol} and fits perfect to our requirements for tracking time intervals.
 
 \begin{figure}
   \begin{center}
@@ -267,7 +254,7 @@ For the webserver we use the Python \textit{package} called \textit{Tornado}. To
 
 \subsection{Unity}
 
-Based on the work of the open-source developer project from Twan Kramer, donkey car provides a simulator software. The Simulator allows us to drive with the car as with a real RCC\-Car. While driving, we can record labelled pictures. The C\# Framework Unity is building used to implement the simulator software. More precisely it uses the Unity 3D game engine to simulate car physics in a 3D world and generates image steering pairs to train our neural network \cite{sdsandbox}. In the Simulator, we can choose between different environments. So, we can be sure that the generated data has enough variety to get a useful model \cite{contributionOfVariables}. Going on a more detailed level would be too much to provide all those details in our report. 
+Based on the work of the open-source developer project from Twan Kramer, donkey car provides a simulator software. The Simulator allows us to drive with the car as with a real RCC\-Car. While driving, we can record labelled pictures. The C\# Framework Unity is building used to implement the simulator software. More precisely, it uses the Unity 3D game engine to simulate car physics in a 3D world and generates image steering pairs to train our neural network \cite{sdsandbox}. In the Simulator, we can choose between different environments. So, we can be sure that the generated data has enough variety to get a useful model \cite{contributionOfVariables}. Going on a more detailed level would be too much to provide all those details in our report. 
 
 \section{Machine Learning}
 As mentioned in our Project \hyperref[sec:backgroundMotivation]{background and motivation section}, machine learning is the heart of our project. So, before we are diving deeper into the details, we want to give a small overview of this topic. Machine Learning includes a large variety of techniques. Those techniques used for building programs which can use the experience to apply them on specific tasks. In other words, formally described as: \\
@@ -469,13 +456,19 @@ Another easy way to evaluate our model is to show each layer's activation after 
 
 \section{Conclusion}
 As we finished the last challenge of this hard project, a feeling of relief overcame every member. It was intellectually - and all of us agree on this - one of the most difficult tasks we encountered as students. We had to face more difficulties than we expected. In the end we were very happy of the successful outcome though.
+<<<<<<< HEAD
+Obviously the group spirit dependent whether the daily objectives we set were successfully reached or not. Especially in the beginning, when we did not really no how to tackle the faced problems, we were constantly nervous and in  bad mood. The closer we came to something we call a success the better was our mood. The first time we saw the car driving on its own around the corner, we were happy for days.
+We also grew together as a team. The delegation of the tasked happened according to our strengths and weaknesses. Before the project we knew each other, but we can say that after the project we know each other way better than before.
+The timespan given to us from the university of two semester was sufficient for accomplishing the main objective. The so called supervised learning on our neuronal networks was successful. For the other way to train the network, the so called reinforcement learning, the given time and/or experience we had with this technology, was not enough. Therefore we conducted a “literature survey” where we evaluated other projects which used reinforcement learning technology and analysed whether the given technology could be implemented in our project or not. 
+=======
 We grew together as a team. The delegation of the tasked happened according to our strengths and weaknesses. Before the project we knew each other, but we can say that after the project we know each other way better than before.
 The timespan given to us from the university of two semester was sufficient for accomplishing the main objective. The supervised learning on our neuronal networks was successfully tested. Originally we planned to experiment regarding unsupervised learning (Reinforcement Learning), but the given timespan was not sufficient enough for this extended project and the complexity was higher than expected. Therefore we conducted a “literature survey” where we evaluated other projects which used reinforcement learning technology and analysed whether the given technology could be implemented in our project or not. 
+>>>>>>> 51a751091ea4275a0407352401eaf8d9d9b0d98e
 We learned the sophisticated interaction between different hardware components and the different software which run on them. Furthermore we got an good overview of the state of the art technology of machine learning software in general.
 Two of three members will definitely try to get a job in this area. They applied for jobs or already have a job where they have to analyse or manipulate big amounts of data.
 
 \section*{Acknowledgment}
-\noindent The authors would like to thank Prof Dr. Florian Gallwitz from the University of Applied Science Georg Simon OHM in Nuremberg for a really good supervising of our group. 
+\noindent The authors would like to thank Prof Dr. Florian Gallwitz from the University of Applied Science - Georg Simon OHM in Nuremberg for a really good supervising of our group. 
 
 
 
