@@ -102,16 +102,16 @@ For our group IT-project at the \textit{University of Applied Science Georg Simo
 % === I. Project background and motivation
 \section{Project background and motivation}
 \label{sec:backgroundMotivation}
-We decided to commit ourselves to this kind of project because we are interested in many aspects related to the problems we had to solve. We knew that our skills and our knowledge was not sufficient in order to solve those problems we would encounter. Along the many hours we spent, we had to learn new things and we can say with some proud that we managed to make the car drive autonomously - with a lot of effort though.
-It is known, that the car industry(especially in Germany) undergoes currently a shift towards electric and autonomous-driving cars. The old engine-driven cars seem to be “old technology”. For three eager students who are interested in informatics and everything which is related to computers, a new opportunity arose and is still arising. Especially in the area of autonomous-driving cars companies invest a lot of money and time. They also search for talents which could make the difference in the future. In the beginning of this project we did  not had any knowledge, how we should deal with the hardware we wanted to use. Even the first car we bought was not compatible to the hardware we bought(raspberry pi, servo driver, etc.). That did not stop us from learning about the hardware and the software we wanted to use. How we combine the hardware with the right software, so that the car can move on its own, was one of the most exciting and interesting aspects we wanted to explore.
-But in the end, an essential aspect and the reason why we wanted to do the project in the first place, was the software - especially: the neuronal networks, machine and deep learning software. This area can not only be used for cars and hardware-related problems. It is also used for understandable software such as film recommendations in your Netflix interface.
-The main question we asked ourselves was: How can we teach our software to steer a car autonomously with the right velocity on a defined road with the help of images we fed into the database? In the following, we explain to the reader exactly how we did it. We hope the reader enjoys the topic as much as we did along the hard but rewarding way.
+We decided to commit ourselves to this kind of project, because we are interested in many aspects related to machine learning. We knew that our skills and knowledge were at the starting point not deep enough, but after successfully completing this project within two semesters we gained a lot of information and understand everything perfectly now. Along the many hours we spent, we had to learn new things and we can say with some proud that we managed to make the car drive autonomously - with a lot of effort though.
+It is known, that the car industry(especially in Germany) undergoes currently a shift towards electric and autonomous-driving cars. The old engine-driven cars seem to be \textit{old technology}. For three eager students who are interested in informatics and everything which is related to computers, a new opportunity arose and is still arising. Especially in the area of autonomous-driving cars, companies invest a lot of money and time. They also search for talents which could make the difference in the future. It was especially hard in the beginning to split the responsibilites and figure out who takes care of which element in the project. Even the first car we bought was not compatible to the hardware we bought(Raspberry Pi 3B+, Servodriver, e.g.). That did not stop us from learning about the hardware and the software we wanted to use more precisely. How we combine the hardware with the right software, so that the car can move on its own, was one of the most exciting and interesting aspects we wanted to explore.
+But in the end, an essential aspect and the reason why we wanted to do the project in the first place, was the software - especially: the neuronal networks, machine- and deep learning software. This area can not only be used for cars and hardware-related problems, but It is also used for understandable software such as movie recommendations in e.g. the Netflix interface.
+The main question we asked ourselves was: \textit{How can we teach our software to steer a car autonomously with the right velocity on a defined road with the help of images we fed into the database?} In the following, we explain to the reader exactly how we did it. We hope the reader enjoys the topic as much as we did along the hard but rewarding way.
 
 \section{Literature Survey}
 \label{sec:LiteratureSurvey}
 
 \subsection{The Level of autonomously driving Cars}
-
+Let us start the survey with defining the autonomously driving itself first. Since this kind of driving evolved within a long period of time, different levels of autonomous driving have been invented and get officially declared. 
 There are defined five levels of vehicle autonomy from the National Highway and Traffic Safety Administration (NHTSA) \footnote{\url{https://www.truecar.com/blog/5-levels-autonomous-vehicles/}}.
 
 \begin{itemize}
@@ -405,7 +405,7 @@ In between the convolutional layer (CNN) and the fully connected layer (Dense), 
 \section{Autonomously Driving}
 \label{sec:AutonomouslyDriving}
 
-At this point our car is equipped with a fully trained model and is ready to drive. Since our neuronal network is build with Keras, the Raspberry Pi uses the KerasPilot-Part to load the trained model and evaluate the captured pictures with that. The pictures captured by the PiCamera are 160x120 pixels with 3 color channels (red, green, blue). The CNN layers which the image need to pass through are shown in figure \ref{cnn_table}.
+At this point our car is equipped with a fully trained model and is ready to drive. Since our neuronal network is build with Keras, the Raspberry Pi uses the KerasPilot-Part to load the trained model and evaluate the captured pictures with that respectively. The pictures captured by the PiCamera are 160x120 pixels with 3 color channels (red, green, blue). The CNN layers which the image need to pass through are shown in figure \ref{cnn_table}.
 
 \begin{figure}
   \begin{center}
@@ -421,7 +421,7 @@ The network produces two different outputs:
 \item throttle\_out: for the car speed
 \end{itemize}
 
-The car speed can be set manually to a constant value. This is especially useful when we let the car drive indoors, because it cannot speed up so much as outdoors. So for our case we only depend on the angle\_out output. The High-Level-Bibliography is Keras, which is respectively based on Tensorflow. For our project we use Tensorflow 1.0, not the latest release 2.0. \\
+The car speed can be set manually to a constant value. This is especially useful when we let the car drive indoors, because it cannot speed up so much as outdoors. So for our case we only depend on the angle\_out output. The High-Level-Bibliography is Keras, which is accordingly based on Tensorflow. For our project we use Tensorflow 1.0, not the latest release 2.0. \\
 
 \begin{figure}
   \begin{center}
@@ -430,7 +430,7 @@ The car speed can be set manually to a constant value. This is especially useful
   \end{center}
 \end{figure}
 
-As already mentioned in \hyperref[cameramodule]{section PiCamera}, we use 20 FPS, so we receive 20 angle\_out outputs per second. This calculations are processed on the Raspberry Pi and the values are directly transmitted to the PCA9685 servodriver and then to the servomotor of the car. This is why the car shakes often while driving, because it receives so many new values where it needs to drive.
+As already mentioned in \hyperref[cameramodule]{section PiCamera}, we use 20 FPS, so we receive 20 angle\_out outputs per second. This calculations are processed on the Raspberry Pi and the values are directly transmitted to the PCA9685 servodriver and then to the servomotor of the car. This is why the car shakes often while driving, because it receives so many new values where it needs to steer its angle.
 
 
 \section{Evaluation}
@@ -472,7 +472,7 @@ Another easy way to evaluate our model is to show each layer's activation after 
 \section{Conclusion}
 As we finished the last challenge of this hard project, a feeling of relief overcame every member. It was intellectually - and all of us agree on this - one of the most difficult tasks we encountered as students. We had to face more difficulties than we expected. In the end we were very happy of the successful outcome though.
 We grew together as a team. The delegation of the tasked happened according to our strengths and weaknesses. Before the project we knew each other, but we can say that after the project we know each other way better than before.
-The timespan given to us from the university of two semester was sufficient for accomplishing the main objective. The supervised learning on our neuronal networks was successfully tested. Originally we planned to experiment regarding unsupervised learning (Reinforcement Learning), but the given timespan was not sufficient and the complexity was higher than expected. Therefore we conducted a “literature survey” where we evaluated other projects which used reinforcement learning technology and analysed whether the given technology could be implemented in our project or not. 
+The timespan given to us from the university of two semester was sufficient for accomplishing the main objective. The supervised learning on our neuronal networks was successfully tested. Originally we planned to experiment regarding unsupervised learning (Reinforcement Learning), but the given timespan was not sufficient enough for this extended project and the complexity was higher than expected. Therefore we conducted a “literature survey” where we evaluated other projects which used reinforcement learning technology and analysed whether the given technology could be implemented in our project or not. 
 We learned the sophisticated interaction between different hardware components and the different software which run on them. Furthermore we got an good overview of the state of the art technology of machine learning software in general.
 Two of three members will definitely try to get a job in this area. They applied for jobs or already have a job where they have to analyse or manipulate big amounts of data.
 
