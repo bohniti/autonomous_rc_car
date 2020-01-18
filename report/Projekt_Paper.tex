@@ -91,11 +91,8 @@
 \maketitle
 % === ABSTRACT 
 \begin{abstract}
-For our group IT-project at the \textit{University of Applied Science Georg Simon OHM}, we built an autonomously driving remote control car. To accomplish this project, we used the framework \textit{DonkeyCar}. The neural net for this project is based on supervised learning, but we provide related work and projects to compare this project with the \textit{state-of-the-art} Reinforcement Learning. We explain how to connect the car with the microcontrollers and cables, to be able to rebuild this project. Every single component will be introduced in an appropriate complexity for non-electrical-engineers.  
-The neural network is a \textit{VGG16}-Network, which will be explained with all details and parts to fully understand the networks' architecture.
-We further provide information how the car can be driving with the webserver. A detailed explanation about the API and the transferred data will be giving in chapter 6.
+For our group IT-project at the \textit{University of Applied Science Georg Simon OHM}, we built an autonomously driving remote control car. To accomplish this project, we used the framework \textit{DonkeyCar}. Supervised learning is the primary component, but we provide related work and projects to compare this project with the \textit{state-of-the-art} Reinforcement Learning. We explain how to connect the car with the microcontrollers and cables, to be able to rebuild this project. Every single component will be introduced in an appropriate complexity for non-electrical-engineers.  The neural network is a \textit{VGG16}-Network, which will be explained with all details and parts to understand the networks' architecture fully. We further provide information about how the car can be driving with the webserver. The Report gives a detailed explanation of the API and the transferred data.
 \end{abstract}
-
 % === KEYWORDS 
 \begin{IEEEkeywords}
 \hl{Machine Learning, IT-Project, RC-Car, RaspberryPi, Autonomusly driving}
@@ -106,11 +103,9 @@ We further provide information how the car can be driving with the webserver. A 
 \section{Project background and motivation}
 \label{sec:backgroundMotivation}
 We decided to commit ourselves to this kind of project because we are interested in many aspects related to the problems we had to solve. We knew that our skills and our knowledge was not sufficient in order to solve those problems we would encounter. Along the many hours we spent, we had to learn new things and we can say with some proud that we managed to make the car drive autonomously - with a lot of effort though.
-It is known, that the car industry(especially in Germany) undergoes currently a shift towards electric and autonomous-driving cars. The old engine-driven cars seem to be “old technology”. For three eager students who are interested in informatics and everything which is related to computers, a new opportunity arose and is still arising. Especially in the area of autonomous-driving cars companies invest a lot of money and time. They also search for talents which could make the difference in the future.
-In the beginning of this project we did not had any knowledge, how we should deal with the hardware we wanted to use. Even the first car we bought was not compatible to the hardware we bought(raspberry pi, servo driver, etc.). That did not stop us from learning about the hardware and the software we wanted to use. How we combine the hardware with the right software, so that the car can move on its own, was one of the most exciting and interesting aspects we wanted to explore.
-But in the end the most important aspect and the reason why we wanted to do the project in the first place, was the software - especially: the neuronal networks, machine and deep learning software. These area can not only be used for cars and hardware related problems. It is also used for plain software such film recommendations in your netflix interface.
-The main question we asked ourselves was: How can we teach our software to steer a car autonomously with the right velocity on a defined road with the help of images we fed into the database? 
-In the following we explain to the reader exactly how we did it. We hope the reader enjoys the topic as much as we did along the hard but rewarding way.
+It is known, that the car industry(especially in Germany) undergoes currently a shift towards electric and autonomous-driving cars. The old engine-driven cars seem to be “old technology”. For three eager students who are interested in informatics and everything which is related to computers, a new opportunity arose and is still arising. Especially in the area of autonomous-driving cars companies invest a lot of money and time. They also search for talents which could make the difference in the future. In the beginning of this project we did  not had any knowledge, how we should deal with the hardware we wanted to use. Even the first car we bought was not compatible to the hardware we bought(raspberry pi, servo driver, etc.). That did not stop us from learning about the hardware and the software we wanted to use. How we combine the hardware with the right software, so that the car can move on its own, was one of the most exciting and interesting aspects we wanted to explore.
+But in the end, an essential aspect and the reason why we wanted to do the project in the first place, was the software - especially: the neuronal networks, machine and deep learning software. This area can not only be used for cars and hardware-related problems. It is also used for understandable software such as film recommendations in your Netflix interface.
+The main question we asked ourselves was: How can we teach our software to steer a car autonomously with the right velocity on a defined road with the help of images we fed into the database? In the following, we explain to the reader exactly how we did it. We hope the reader enjoys the topic as much as we did along the hard but rewarding way.
 
 \section{Literature Survey}
 \label{sec:LiteratureSurvey}
@@ -136,7 +131,7 @@ Example: Waymo announced in 2017 that they are testing \textit{level 4} driving 
 
 \subsection{Reinforcement Learning}
 
-The two big approaches in the Machine Learning field are the supervised and unsupervised learning. Supervised learning requires labeled data, this means the data is already tagged with the \textit{correct answer}. The model learnes on the data and their labels and predicts an output based on that. Whereas the unsupervised learning describes the way in which the model works on its own to discover the information. It deals mostly with unlabeled data and gets penalized if it produces wrong results. The unsupervised learning has some prime advantages over the supervised learning:
+The two significant approaches in the Machine Learning field are supervised and unsupervised learning. Supervised learning requires labelled data, and this means the data is already tagged with the \textit{correct answer}. The model learns on the data and their labels and predicts an output based on that. Whereas the unsupervised learning describes how the model works on its own to discover the information. It deals mostly with unlabeled data and gets penalized if it produces wrong results. Unsupervised learning has some prime advantages over supervised learning:
 
 \begin{itemize}
 \item Finds all kind of unknown patterns: Unknown objects on the road, broken streets
@@ -144,49 +139,37 @@ The two big approaches in the Machine Learning field are the supervised and unsu
 \item Solves various types of real-world problems, such as autonomous driving
 \end{itemize}
 
-We found that a team from the North China University of Technology already approached the try to drive the donkeycar autonomously \cite{reinforcement}. The team used the \textit{gym environment} from OpenAI \footnote{\url{https://gym.openai.com/}}. This open-source project from OpenAI allows to build relatively easy penalizing models to implement reinforcement Learning. OpenAI provides plenty of API's such as reset(), step() or is\_game\_over(). This methods are the core for the model to recognize its own faults. \\
-They use the DDQN algorithm to perform the reinforcement Learning. DDQN stands for Deep Reinforcement Learning with Double Q-learning \cite{reinforcement2} developed by a team of researchers at \textit{Google DeepMind}. Explaining how this algorithm works would exceed the limits of this paper, but the final output of the team \cite{reinforcement} was autonomously driving donkey car. The training process was fairly slow and it didn't drive completely exact, but the experiment shows that the reinforcement Learning can be implement together with the donkeycar quite easily.
-
+We found that a team from the North China University of Technology already approached the try to drive the donkey car autonomously \cite{reinforcement}. The team used the \textit{gym environment} from OpenAI \footnote{\url{https://gym.openai.com/}}. This open-source project from OpenAI allows building relatively easy penalizing models to implement reinforcement Learning. OpenAI provides plenty of API's such as reset(), step() or is\_game\_over(). These methods are the core of the model to recognize its faults. \\
+They use the DDQN algorithm to perform reinforcement Learning. DDQN stands for Deep Reinforcement Learning with Double Q-learning \cite{reinforcement2} developed by a team of researchers at \textit{Google DeepMind}. Explaining how this algorithm works would exceed the limits of this paper, but the final output of the team \cite{reinforcement} was autonomously driving donkey car. The training process was fairly slow, and it didn't drive completely exact, but the experiment shows that reinforcement Learning can be implemented together with the donkey car quite easily.
 \section{Hardware}
-
-Normally the car is is driven by a remote control which sends signals to the steer of the wheels depending on which buttons the controlling user pushes. In our case, we want to control the car only with the computer itself. To fulfill that, we will need to buy some extra parts, rewire the remot control car’s servomotor and connect it to the onboard Raspberry Pi 3B computer. We will also need a camera to capture the images and a servomotor controller.
-
+Usually, the car is driven by remote control. Which sends signals to the steer of the wheels depending on which buttons the controlling user pushes. In our case, we want to control the car only with the computer itself. To fulfil that, we will need to buy some extra parts, rewire the remote control car’s servomotor and connect it to the onboard Raspberry Pi 3B computer. We will also need a camera to capture the images and a servomotor controller.
 \subsection{RC Car}
-Our car is the \textit{s-idee® 18175 9115 RC Car Buggy waterproof monstertruck 1:12}.
-The remote control car is the heart of our project. Eventhough basically every RC Car can be used to drive autonomously, it is a better choice to buy a real model car, because a real servomotor makes it much easier to connect the pins to. The car’s ESC (electronic speed controller) must be apart from its signal receiver.
-The steering servo and the ESC must be connectable to the servomotor controller in order for the Raspberry Pi to fully control both. It is an advantage if the ESC supports fine-tuning of the steering angle to drive the car more precisely. 
-The cost of a real model RC car is approximately 100 euros and so was the price of ours. It is neccessary that the car is quite large, because we need to store the Raspberry Pi, the camera and a powerbank for the Pi onto the car without losing to much speed of the car. To keep everything in position, we attached it with a 3D print of a plastic holding-system, which was tailored by us for our car. \\
-
+Our car is the \textit{s-idee® 18175 9115 RC Car Buggy waterproof monster-truck 1:12}.
+The remote control car is the heart of our project. Even though every RC Car can be used to drive autonomously, it is a better choice to buy a real model car, because a real servomotor makes it much easier to connect the pins to. The car’s ESC (electronic speed controller) must be apart from its signal receiver. The steering servo and the ESC must be connectable to the servo motor controller for the Raspberry Pi to control both fully. It is an advantage if the ESC supports fine-tuning of the steering angle to drive the car more precisely. 
+The cost of a real model RC car is approximately 100 euros, and so was the price of ours. The car must be quite large because we need to store the Raspberry Pi, the camera and a power bank for the Pi onto the car without losing to much speed of the vehicle. To keep everything in position, we attached it with a 3D print of a plastic holding-system, which was tailored by us for our car. \\
 \begin{figure}
   \begin{center}
   \includegraphics[width=2.5in]{photo/car.jpg}\\
   \caption{Remote Control Car}\label{car}
   \end{center}
 \end{figure}
-
 \subsubsection{Technical Details}
-Our car comes with 2,4 GHz type of the remote control and is 40 km/h fast. It only weights 1,88 Kg. Since the car is normaled steered by the remote control, in our case we use the Raspberry Pi to drive it autonomously. The battery is a 9,6V with 800 mah, which gives us plenty of time to capture pictures of the track to train the model on. The car like casing is easy to remove, to attach the Raspberry Pi and the rest onto it.
-
+Our car comes with 2,4 GHz type of remote control and is 40 km/h fast. It only weights 1,88 Kg. Since the vehicle is typically steered by the remote control, in our case, we use the Raspberry Pi to drive it autonomously. The battery is a 9,6V with 800 mah, which gives us plenty of time to capture pictures of the track to train the model. The car-like casing is easy to remove, to attach the Raspberry Pi and the rest onto it.
 \subsubsection{Servomotor}
-
-The servomotor is the key to connect the Raspberry Pi with the RC car. A normal servomotor has 2 times 3 pins connect to it. One responsible for the steering and the other one for the speed. The steering is managed by a so-called PWM (Pulse Width Modulation) as shown in figure \ref{pwm}. Depending on the length of the signal, the steering performs a certain degree of changing its angle. We need to configure and setup the optimum values for our car in the Python \textit{steering} file. \\
-
+The servomotor is the key to connect the Raspberry Pi with the RC car. A normal servomotor has two times three pins attached to it. One responsible for the steering and the other one for the speed. The steering is managed by a so-called PWM (Pulse Width Modulation), as shown in figure \ref{pwm}. Depending on the length of the signal, the steering performs a certain degree of changing its angle. We need to configure and set up the optimum values for our car in the Python \textit{steering} file.\\
 \begin{figure}
   \begin{center}
   \includegraphics[width=2.5in]{photo/pwm}\\
   \caption{PWM signal}\label{pwm}
   \end{center}
 \end{figure}
-
 \subsection{Raspberry Pi}
-Our group project aims to be affordable, so we chose the Raspberry PI 3 model B+. There would be better onboard computer such as the \textit{NVIDIA DRIVE PX Pegasus} for larger projects, but the computing power exceeds our requirements by far.
+Our group project aims to be affordable, so we chose the Raspberry PI 3 Model B+. There would be a better onboard computer such as the \textit{NVIDIA DRIVE PX Pegasus} for larger projects, but the computing power exceeds our requirements by far.
 Even though by now the Raspberry Pi 4 is out, we still use the Raspberry Pi 3B+, because we are sure that it is compatible with our other microcontrollers and software. \\
-We use a 16GB SanDisc to store the operating system and the machine learning model on the Raspberry Pi. \\
-
+We use a 16GB SanDisk to store the operating system and the machine learning model on the Raspberry Pi. \\
 \subsubsection{Technical Details}
-The Raspberry Pi 3B+ is equipped with a lot of different extensions. It has a Wi-Fi module to communicate with the Python webserver and a farely fast processor to run the neural network and classify where to drive next. The Processor is the Broadcom BCM2837B0, Cortex-A53 with 1.4GHz and it has 1GB LPDDR2 SDRAM. \\
-Furthermore for the connectivity the Pi has extended 40-pin GPIO headers. The weight is only 42 gramms, which makes it easy to attach it onto the RC car. The \textit{Donkey Car Project} \cite{donkey} provides a prepared operating system for the Raspberry Pi called \textit{donkeypi}. This OS is based on the basic \textit{raspbian OS} from the Raspberry Pi company, but also includes the prepared Python files to start the webserver, read in the images and drive autonomously based on the images classified through the trained model. \\
-
+The Raspberry Pi 3B+ is equipped with a lot of different extensions. It has a Wi-Fi module to communicate with the Python web server and a fairly fast processor to run the neural network and classify where to drive next. The Processor is the Broadcom BCM2837B0, Cortex-A53 with 1.4GHz and it has 1GB LPDDR2 SDRAM. \\
+Furthermore, for the connectivity, the Pi has extended 40-pin GPIO headers. The weight is only 42 grams, which makes it easy to attach it onto the RC car. The \textit{Donkey Car Project} \cite{donkey} provides a prepared operating system for the Raspberry Pi called \textit{donkeypi}. This OS is based on the basic \textit{raspbian OS} from the Raspberry Pi company, but also includes the prepared Python files to start the webserver, read in the images and drive autonomously based on the images classified through the trained model. \\
 \subsubsection{Cameramodule}
 \label{sec:cameramodule}
 
