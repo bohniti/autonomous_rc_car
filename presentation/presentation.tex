@@ -1,8 +1,6 @@
-
 %----------------------------------------------------------------------------------------
 %	PACKAGES AND THEMES
 %----------------------------------------------------------------------------------------
-
 \documentclass{beamer}
 \mode<presentation> {
 \usetheme{Berlin}
@@ -23,7 +21,7 @@
 \setlength\epigraphwidth{8cm}
 \setlength\epigraphrule{0pt}
 \patchcmd{\epigraph}{\@epitext{#1}}{\itshape\@epitext{#1}}{}{}
-
+\usepackage{listings}
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
@@ -55,11 +53,10 @@ Georg Simon Ohm University of Applied Science\\ % Your institution for the title
 %----------------------------------------------------------------------------------------
 %	PRESENTATION SLIDES
 %----------------------------------------------------------------------------------------
-
 %------------------------------------------------
 \section{Background}
 %------------------------------------------------
-
+%
 \begin{frame}
 \frametitle{Background}
 \epigraph{"We can build these models, but we don't know how they work."}{--- \textup{ Joel Dudley}, MITs Technology Review}
@@ -67,64 +64,122 @@ Georg Simon Ohm University of Applied Science\\ % Your institution for the title
 \includegraphics[width=0.4\linewidth]{photo/aivsml}
 \end{figure}
 \end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Basics}
-Airbnb is a model based on share economy. Everyone who owns an apartment can rent it out for travelers as a resting place, where it feels like home. There is a Mobile app/website: online platform to match demand and supply Listings (check in and check out: demand for short period rent apartment) .
-\begin{figure}
-\includegraphics[width=0.5\linewidth]{photo/autonom}
-\end{figure}
-\end{frame}
-
+%
 %------------------------------------------------
 \section{Literature Survey}
 %---------------------------------------------
+%
 \begin{frame}
-\frametitle{General Methology}
-Using data analysis and show how it can be used to improve the marketing of Airbnb in Seattle according to each policy of the marketing-mix.
+\frametitle{The Level of autonomously driving Cars - Part I}
+\begin{block}{Level 0}
+No Automation
+\begin{itemize}
+\item driven by a human
+\end{itemize}
+\end{block}
+\begin{block}{Level 1}
+Driver Assistance
+\begin{itemize}
+\item steering into the middle of the lane
+\item breaking tires when the distance to the car in front is to close
+\item just one system at a time 
+\end{itemize}
+\end{block}
 \end{frame}
 %
 %------------------------------------------------
 %
 \begin{frame}
-\frametitle{Marketing}
+\frametitle{The Level of autonomously driving Cars - Part II}
+\begin{block}{Level 2}
+Partial Automation
+\begin{itemize}
+\item a computer programm drives the car (accelerating and decelerating)
+\item human is responsible and still in control
+\end{itemize}
+\end{block}
+\begin{block}{Level 3}
+Conditional Automation
+\begin{itemize}
+\item like above but the computer looks over the environment as well
+\item the computer is able to handle easy  standard scenarios
+\item Example: Google Waymo self-driving car 
+\end{itemize}
+\end{block}
+\end{frame}
+%
+%------------------------------------------------
+%
+\begin{frame}
+\frametitle{The Level of autonomously driving Cars - Part III}
+\begin{block}{Level 4}
+High Automation
+\begin{itemize}
+\item the computer can handle every situation 
+\item without very special circumstances
+\end{itemize}
+\end{block}
+\begin{block}{Level 5}
+Conditional Automation
+\begin{itemize}
+\item the human must not be in the car
+\item e. g. it would be possible that cars search for parking lots by them self
+\end{itemize}
+\end{block}
+\end{frame}
+%
+%------------------------------------------------
+%
+\begin{frame}
+\frametitle{Reinforcement Learning - Part I}
+\epigraph{ " [...] what we want is a machine that can learn form experience."}{--- \textup{ Allen Turing}, 1947}
+\begin{figure}
+\includegraphics[width=0.6\linewidth]{photo/rl}
+\end{figure}
+\end{frame}
+%
+%------------------------------------------------
+%
+\begin{frame}
+\frametitle{Reinforcement Learning - Part II}
 \begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
-
 \column{.45\textwidth} % Left column and width
-\textbf{The 4 P's of the Marketing-Mix}
+\textbf{Advantages of unsupervisted learning}
 \begin{enumerate}
-\item Product
-\item Price
-\item Promotion
-\item Place
+\item can find every pattern (unknown objects)
+\item does not need examples because it can learn from experience ...
+\item ... so it is more useful for real-world problems (e. g. autonomous driving)
 \end{enumerate}
-
 \column{.5\textwidth} % Right column and width
-
-\begin{block}{Definition Marketing}
-Marketing is about the firm’s effort to address customer needs and expectations, which influences the demands made by the customers on the product and need to be fulfilled by the product.
+\begin{block}{DDQN}
+Reasearchs from Google DeepMind (known from achivements at Boardgame GO) developed the Deep Reinforment Learning with Double Q-learning. They showed reinforcement can be implemented on (Donkey) Cars. 
 \end{block}
 \end{columns}
 \end{frame}
-
+%
 %------------------------------------------------
-
+%
 \begin{frame}
-\frametitle{How to use Data Analysis to improve the Airbnb Marketing?}
-\begin{itemize}
-\item \textbf{Descriptive analysis:} Reviews, locations, review and price correlation, details of listings and price correlation
-\item \textbf{Descriptive analysis:} Predict the number of customer
-\item \textbf{Optimization:} Optimize the booking of listings 
-\item \textbf{Adaptive learning:} Learn from the results generated and combine results to give out suggestion in marketing campaigns may hold by Airbnb
-\end{itemize}
+\frametitle{Reinforcement Learning - Part III}
+\begin{figure}
+\includegraphics[width=0.4\linewidth]{photo/q}
+\end{figure}
 \end{frame}
-
+%
+%------------------------------------------------
+%
+\begin{frame}
+\frametitle{Reinforcement Learning - Part III}
+"The basic idea is to get an Value Q which represents the state s and the action a of an unsupervised machine learning task"\\
+\begin{figure}
+\includegraphics[width=0.9\linewidth]{photo/qformula}
+\end{figure}
+\end{frame}
+%
 %------------------------------------------------
 \section{Hardware}
 %--------------------------------------------
-
+%
 \begin{frame}
 \frametitle{Remote Control Car}
 \begin{itemize}
@@ -149,9 +204,9 @@ Marketing is about the firm’s effort to address customer needs and expectation
 \end{figure}
 \end{itemize}
 \end{frame}
-
+%
 %------------------------------------------------
-
+%
 \begin{frame}
 \frametitle{Raspberry Pi 3B+ - Part ll}
 \begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
@@ -160,18 +215,16 @@ Marketing is about the firm’s effort to address customer needs and expectation
 \item For our purpose, we use the Rasp- berry Pi Camera Module 8MP v2.1. It can capture pictures with 1080p and 8-megapixel focus \\
 \item Connector on the Raspberry Pi 3B+ with a 15 Pin Ribbon Cable
 \end{itemize}
-
 \column{.45\textwidth} % Right column and width
 PiCamera Module
 \begin{figure}
 \includegraphics[width=0.7\linewidth]{photo/camera.jpg}
 \end{figure}
 \end{columns}
-
 \end{frame}
-
+%
 %------------------------------------------------
-
+%
 \begin{frame}
 \frametitle{Servodriver}
 From SunFounder, model \textit{PCA9685}
@@ -184,9 +237,9 @@ From SunFounder, model \textit{PCA9685}
 \includegraphics[width=0.4\linewidth]{photo/sunfounder.jpeg}
 \end{figure}
 \end{frame}
-
+%
 %------------------------------------------------
-
+%
 \begin{frame}
 \frametitle{Cable Management - Part I}
 \begin{block}{Raspberry Pi 3B+ to Servodriver}
@@ -197,7 +250,6 @@ From SunFounder, model \textit{PCA9685}
 \item 2x3 Pin's for the steering and throtteling
 \end{itemize}
 \end{block}
-
 \begin{block}{Servodriver to Servomotor}
 Four Pin's need to be connected. 
 \begin{itemize}
@@ -206,24 +258,21 @@ Four Pin's need to be connected.
 \item 2 Pin's for the steering and throtteling
 \end{itemize}
 \end{block}
-%
 \end{frame}
-
-%------------------------------------------------
-
+%
+%------------------------------------------------------------------------------------
+%
 \begin{frame}
 \frametitle{Cable Management - Part ll}
 \begin{figure}
 \includegraphics[width=0.7\linewidth]{photo/ebene2.pdf}
 \end{figure}
 \end{frame}
-
-%------------------------------------------------
+%
+%------------------------------------------------------------------------------------
 \section{Software}
-%------------------------------------------------
-
-%------------------------------------------------
-
+%------------------------------------------------------------------------------------
+%
 \begin{frame}
 \frametitle{Software Architecture - Python Files}
 The Donkey Self-Driving Car Project is the basis for our group Project. The Filesystem is: \\
@@ -235,9 +284,9 @@ The Donkey Self-Driving Car Project is the basis for our group Project. The File
 \end{itemize}
 \end{frame}
 
-%------------------------------------------------
+%------------------------------------------------------------------------------------
 
-%------------------------------------------------
+%------------------------------------------------------------------------------------
 
 \begin{frame}
 \frametitle{Python Tornado Webserver}
@@ -246,7 +295,7 @@ The Donkey Self-Driving Car Project is the basis for our group Project. The File
 \end{figure}
 \end{frame}
 
-%------------------------------------------------
+%------------------------------------------------------------------------------------
 
 \begin{frame}
 \frametitle{Training the model with Unity}
@@ -265,100 +314,93 @@ Snapshot from the Simulation
 \end{figure}
 \end{columns}
 \end{frame}
-%------------------------------------------------
 
+%------------------------------------------------------------------------------------
 \section{Machine Learning}
-%--------------------------------------------
+%------------------------------------------------------------------------------------
+
 \begin{frame}
-The team around Josh Keating reached a mean absolute error between 32\$ to 35\$
-\begin{itemize}
-\item Our network design was way to simple
-\item We didn't include the important neighbourhood feature
-\item Our result with our LSTM neural network was 64.04\$ (MSA)
-\item Nevertheless, our best model was the linear regression with a MAE of 43.89\$
-\end{itemize}
+\frametitle{Machine Learning - Part I}
+\epigraph{"A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E"}{--- \textup{Mitchel }, 1979}
 \end{frame}
-
-%------------------------------------------------
-
+%
+%------------------------------------------------------------------------------------
+%
 \begin{frame}
-\frametitle{Which facts lessors need to address in their description to raise the interest of potential customer, who ‘fit’ the vibe of the neighborhood and set their focus on the same aspects as former customers of these apartments?}
+\frametitle{Machine Learning - Part II}
 As shown in the word cloud:
 \begin{itemize}
-\item The six most reviewed cities are Capitol Hill, Ballard, Queen Anne, Belltown, Minor, Wallingford 
-\item All cities have the words walk, park and restaurant written in big
-\item The word “downtown” is also used often
-\item For Minor, the word “lake” is very important
-\item Interestingly, the word “Washington” is important for the cities Minor and Capitol Hill
-\end{itemize}
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Which price can be charged for an apartment with certain characteristics?}
-Heatmap: Correlation between features and price
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{photo/autonom}
-\end{figure}
-\end{frame}
-%------------------------------------------------
-\begin{frame}
-\frametitle{Which price can be charged for an apartment with certain characteristics?}
-As shown in the heatmap from the previous slide, there is a clear correlation between number of bedrooms and price.\\More features with correlate with the price are the beds, bathrooms, room type and guests included.
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{photo/autonom}
-\end{figure}
-\end{frame}
-%------------------------------------------------
-\begin{frame}
-\frametitle{Which price can be charged for an apartment with certain characteristics?}
-Another big indicatior is the \textbf{season}. As shown in the figure below there is a strong fluctuation between the prices and the seasons.\\ So, we need to adapt our price on the current month.
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{photo/autonom}
-\end{figure}
-\end{frame}
-%------------------------------------------------
-\begin{frame}
-\frametitle{When can lessors increase the price per night for their apartment and when should they lower it?}
-\begin{itemize}
-\item Price increase from January and July from 120\$ to 150\$
-\item Price decrease until November to 135\$
-\item We can detect an increasing demand for flats in summer time and Christmas with a correlation of an increasing price
+\item Casully explained: Machine Learning is a functions which could be optimized
 \end{itemize}
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{photo/autonom}
+\includegraphics[width=0.8\linewidth]{photo/history}
 \end{figure}
 \end{frame}
-%------------------------------------------------
-\begin{frame}
-\frametitle{What is a good point in time to start a marketing campaign?}
-We can see clearly the high fluctuation of visitors on a weekly basis, but it is also obvious that it correlates with the picture before.\\It could be explained by people are more likely to travel on weekends than on weekdays
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{photo/autonom}
-\end{figure}
-\end{frame}
-%------------------------------------------------
 
+%------------------------------------------------------------------------------------
+%
+\begin{frame}
+\frametitle{Machine Learning - Part I}
+\epigraph{"We get a deep neural network if we had more than one hidden layer in a neural network . Neural Networks are a concept in the machine learning discipline which try to build a program that learns like the human brain is learning."}{--- \textup{Andrew Ng }, 2013}
+\end{frame}
+%
+%------------------------------------------------------------------------------------
+%
+\begin{frame}
+\frametitle{Deep Learning - Part II}
+\begin{columns}[c] 
+\column{.45\textwidth} % Left column and width
+\textbf{Parts of a Convolutional Neural Networks}
+\begin{enumerate}
+\item Convolutional Layers
+\item Pooling Layers
+\item Kernel Regularization
+\end{enumerate}
+\column{.5\textwidth} % Right column and width
+\begin{figure}
+\includegraphics[width=1.05\linewidth]{photo/code.png}
+\end{figure}
+\end{columns}
+\end{frame}
+%
+%------------------------------------------------------------------------------------
+%
+\begin{frame}
+\frametitle{Deep Learning - Part III}
+\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+\column{.45\textwidth} % Left column and width
+\textbf{Keyfacts of our deep Network: }
+\begin{enumerate}
+\item VGG16 Architecture (convolutional neural networks)
+\item 266.628 parameters
+\item based Nvidias research 
+\item final version has pooling layer (basic implementaion does not)
+\end{enumerate}
+\column{.5\textwidth} % Right column and width
+\begin{figure}
+\includegraphics[width=0.75\linewidth]{photo/CNNArchitecture.png}
+\end{figure}
+\end{columns}
+\end{frame}
+%
+%
+%------------------------------------------------------------------------------------
 \section{Autonomously Driving}
-%------------------------------------------------
+%------------------------------------------------------------------------------------
+%
 \begin{frame}
 \frametitle{Keras Pilot - Part I}
 The Keras Pilot (\textit{.h5} Format) is stored on the Raspberry Pi. 
-
 \begin{itemize}
 \item The image captured with the PiCamera are 160x120x3 Pixels
 \item They pass through the follwing Neural Network
 \item The Output in the last fully connected Layer is \\ (\textit{angle\_out} and \textit{throttle\_out})
 \end{itemize}
-
 \begin{figure}
 \includegraphics[width=1\linewidth]{photo/cnn_table}
 \end{figure}
-
 \end{frame}
-%---------------------------------------------
-
+%---------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{Keras Pilot - Part ll}
 Connection with the PiCamera Module:
@@ -370,19 +412,15 @@ Connection with the PiCamera Module:
 \item According to that, the car changes 20 times per second the angle
 \item The throttle is fix, because of the space limitation
 \end{itemize}
-
 \column{.45\textwidth} % Right column and width
-
 \begin{center}
 	\includegraphics[width=4cm]{photo/autonom}
 \end{center}
-
 \end{columns}
 \end{frame}
 %----------------------------------------------------------------------------------------
-
 \section{Evaluation}
-%------------------------------------------------
+%------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{Evaluation - Part l}
 \begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
@@ -390,7 +428,6 @@ Connection with the PiCamera Module:
 \begin{block}{Evaluation}
 Even though CNN perform a really good result in the computer vision field, it is still quite hard to decompse the decisions and the filters to understand the blackbox behind. For this reason visualized one decision by plotting the occlusion maps (next page) based on this criterion function
 \end{block}
-
 \column{.45\textwidth} % Right column and width
 The criterion function:
 \begin{equation}
@@ -399,13 +436,10 @@ O_{i,j}= \begin{cases}
     1              & \text{otherwise} \end{cases}
 \end{equation}
 \end{columns}
-
 \end{frame}
-%---------------------------------------------
-
+%----------------------------------------------------------------------------------------
 \begin{frame}
 \begin{block}{Evaluation - Part ll: Occlusion maps generated out of the CNN layers from section \textit{Autonomously Driving - Keras Pilot (Part l)}}
-
 \begin{center}
 	\includegraphics[width=5cm]{photo/filter}
 \end{center}
@@ -420,35 +454,27 @@ Not interpolated filter and gray with bilinear interpolation
 Activation features after each Layer of the NN respectively
 \end{center}
 \end{block}
-
-
 \end{frame}
-
-%------------------------------------------------
-
+%------------------------------------------------------------------------------------
 \begin{frame}
 \frametitle{Conclusion}
-
 \begin{block}{Final Thoughts}
 The project was challenging, but all of us learned a lot during this 2 semester long process of building up this project. While doing this project, Tensorflow 2.0 was released and this changed a lot. We needed to adjust constantly, because the Tech-research is so fast.
 In conclusion, we had a great time and are eager to dive deeper into Deep Learning!
 \end{block}
-
 \begin{block}{Acknowledgement}
 The authors would like to thank Prof Dr. Florian Gallwitz from the University of Applied Science - Georg Simon OHM in Nuremberg.
 \end{block}
-
 \end{frame}
-
-%------------------------------------------------
-
+%
+%------------------------------------------------------------------------------------
+%
 \begin{frame}
 \frametitle{References}
 \begin{itemize}
 \item Github: https://github.com/bohniti/it-projekt
 \item Website: https://bohniti.github.io/it-projekt/project/
 \end{itemize}
-
 \begin{block}{Sources}
 All of our sources are listed in the project paper on Github.
 \end{block}
@@ -456,9 +482,9 @@ All of our sources are listed in the project paper on Github.
 Thanks for listening!
 \end{center}
 \end{frame}
-
-%------------------------------------------------
-
+%
+%------------------------------------------------------------------------------------
+%
 \begin{frame}
 \Huge{\centerline{The End}} 
 \vspace{5mm}
@@ -467,5 +493,4 @@ Thanks for listening!
 \end{center}
 \end{frame}
 %----------------------------------------------------------------------------------------
-
 \end{document} 
