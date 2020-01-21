@@ -27,7 +27,7 @@
 %----------------------------------------------------------------------------------------
 \titlegraphic{\includegraphics[width=3.5cm]{photo/logo}}
 
-\title{IT-Projekt \\ Autonomously driving Remote Control Car} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title{IT-Project \\ Autonomously driving Remote Control Car} % The short title appears at the bottom of every slide, the full title is only on the title page
 \author{Bohnstedt Timo ,
       L\"ohr Tim and Palpanes Ionannis\\%
       } 
@@ -76,13 +76,13 @@ Georg Simon Ohm University of Applied Science\\ % Your institution for the title
 \begin{block}{Level 0}
 No Automation
 \begin{itemize}
-\item driven by a human
+\item Driven by a human
 \end{itemize}
 \end{block}
 \begin{block}{Level 1}
 Driver Assistance
 \begin{itemize}
-\item Ateering into the middle of the lane
+\item Steering into the middle of the lane
 \item Breaking tires when the distance to the car in front is to close
 \item Just one system at a time 
 \end{itemize}
@@ -96,8 +96,8 @@ Driver Assistance
 \begin{block}{Level 2}
 Partial Automation
 \begin{itemize}
-\item Acomputer programm drives the car (accelerating and decelerating)
-\item Human is responsible and still in control
+\item A computer programm drives the car (accelerating and decelerating)
+\item The human is responsible and still in control
 \end{itemize}
 \end{block}
 \begin{block}{Level 3}
@@ -124,8 +124,8 @@ High Automation
 \begin{block}{Level 5}
 Conditional Automation
 \begin{itemize}
-\item The human must not be in the car
-\item E. g. it would be possible that cars search for parking lots by them self
+\item The human is not required to be in the car
+\item E.g. it would be possible that cars search for parking lots by themselves
 \end{itemize}
 \end{block}
 \end{frame}
@@ -134,7 +134,7 @@ Conditional Automation
 %
 \begin{frame}
 \frametitle{Reinforcement Learning - Part I}
-\epigraph{ " [...] what we want is a machine that can learn form experience."}{--- \textup{ Alan Turing}, 1947}
+\epigraph{ " [...] What we want is a machine that can learn form experience."}{--- \textup{ Alan Turing}, 1947}
 \begin{figure}
 \includegraphics[width=0.6\linewidth]{photo/rl}
 \end{figure}
@@ -146,15 +146,15 @@ Conditional Automation
 \frametitle{Reinforcement Learning - Part II}
 \begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
 \column{.45\textwidth} % Left column and width
-\textbf{Advantages of unsupervisted learning}
+\textbf{Advantages of unsupervised Learning}
 \begin{enumerate}
 \item Can find every pattern (unknown objects)
-\item Does not need examples because it can learn from experience ...
+\item Does not need examples, because it can learn from experience ...
 \item ... so it is more useful for real-world problems (e. g. autonomous driving)
 \end{enumerate}
 \column{.5\textwidth} % Right column and width
 \begin{block}{DDQN}
-Reasearchs from Google DeepMind (known from achivements at Boardgame GO) developed the Deep Reinforment Learning with Double Q-learning. They showed reinforcement can be implemented on (Donkey) Cars. 
+Researchers from Google DeepMind (known from achievements at Boardgame GO) developed the Deep Reinforment Learning with Double Q-learning. They showed that reinforcement Learning can be implemented in (Donkey) Cars. 
 \end{block}
 \end{columns}
 \end{frame}
@@ -171,7 +171,7 @@ Reasearchs from Google DeepMind (known from achivements at Boardgame GO) develop
 %--------------------------------------------------------------------------------------------
 %
 \begin{frame}
-\frametitle{Reinforcement Learning - Part III}
+\frametitle{Reinforcement Learning - Part IV}
 "The basic idea is to get an Value Q which represents the state s and the action a of an unsupervised machine learning task"\\
 \begin{figure}
 \includegraphics[width=0.9\linewidth]{photo/qformula}
@@ -330,7 +330,6 @@ Snapshot from the Simulation
 %
 \begin{frame}
 \frametitle{Machine Learning - Part II}
-As shown in the word cloud:
 \begin{itemize}
 \item Casully explained: Machine Learning is a functions which could be optimized
 \end{itemize}
@@ -342,7 +341,7 @@ As shown in the word cloud:
 %------------------------------------------------------------------------------------
 %
 \begin{frame}
-\frametitle{Machine Learning - Part I}
+\frametitle{Deep Learning - Part I}
 \epigraph{"We get a deep neural network if we had more than one hidden layer in a neural network . Neural Networks are a concept in the machine learning discipline which try to build a program that learns like the human brain is learning."}{--- \textup{Andrew Ng }, 2013}
 \end{frame}
 %
@@ -352,11 +351,11 @@ As shown in the word cloud:
 \frametitle{Deep Learning - Part II}
 \begin{columns}[c] 
 \column{.45\textwidth} % Left column and width
-\textbf{Parts of a Convolutional Neural Networks}
+\textbf{Parts of a Convolutional Neural Network:}
 \begin{enumerate}
-\item Convolutional Layers
-\item Pooling Layers
-\item Kernel Regularization
+\item Convolutional Layers (CONV)
+\item Pooling Layers (POOL)
+\item Fully connected Layers (FC)
 \end{enumerate}
 \column{.5\textwidth} % Right column and width
 \begin{figure}
@@ -374,9 +373,9 @@ As shown in the word cloud:
 \textbf{Keyfacts of our deep Network: }
 \begin{enumerate}
 \item VGG16 Architecture (convolutional neural networks)
-\item 266.628 parameters
-\item based Nvidias research 
-\item final version has pooling layer (basic implementaion does not)
+\item 266.628 Parameters
+\item Based on Nvidias research 
+\item The final version has a Pooling Layer (basic implementation not)
 \end{enumerate}
 \column{.5\textwidth} % Right column and width
 \begin{figure}
