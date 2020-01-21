@@ -145,7 +145,7 @@ The cost of a real model RC car is approximately 100 euros, and so was the price
   \end{center}
 \end{figure}
 \subsubsection{Technical Details}
-Our car comes with 2,4 GHz type of remote control and is 40 km/h fast. It only weights 1,88 Kg. Since the vehicle is typically steered by the remote control, in our case, we use the Raspberry Pi to drive it autonomously. The battery is a 9,6V with 800 mah, which gives us plenty of time to capture pictures of the track to train the model. The car-like casing is easy to remove, to attach the Raspberry Pi and the rest onto it.
+Our car comes with 2,4 GHz type of remote control and is 40 km/h fast. It only weights 1,88 Kg. Since the vehicle is typically steered by the remote control, in our case, we use the Raspberry Pi to drive it autonomously. The battery is a 9,6V with 800 mah, which gives us plenty of time to capture pictures of the track to train the model. The car-like case is easy to remove and to attach the Raspberry Pi and the rest onto it.
 \subsubsection{Servomotor}
 The servomotor is the key to connect the Raspberry Pi with the RC car. A normal servomotor has two times three pins attached to it. One responsible for the steering and the other one for the speed. The steering is managed by a so-called PWM (Pulse Width Modulation), as shown in figure \ref{pwm}. Depending on the length of the signal, the steering performs a certain degree of changing its angle. We need to configure and set up the optimum values for our car in the Python \textit{steering} file.\\
 \begin{figure}

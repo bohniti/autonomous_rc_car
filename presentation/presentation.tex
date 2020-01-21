@@ -25,7 +25,7 @@
 %----------------------------------------------------------------------------------------
 \titlegraphic{\includegraphics[width=3.5cm]{photo/logo}}
 
-\title{IT-Projekt - Autonmously driving Remote Control Car} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title{IT-Projekt \\ Autonomously driving Remote Control Car} % The short title appears at the bottom of every slide, the full title is only on the title page
 \author{Bohnstedt Timo ,
       L\"ohr Tim and Palpanes Ionannis\\%
       } 
@@ -127,83 +127,97 @@ Marketing is about the firm’s effort to address customer needs and expectation
 %--------------------------------------------
 
 \begin{frame}
-\frametitle{Listings}
+\frametitle{Remote Control Car}
 \begin{itemize}
-\item Consist of 92 columns, with attributes describing different characteristics of the rented apartments
-\item Contains 3818 apartments distributed in 79 Neighborhood
+\item Model car with a servomotor and electronic speed control (ESC)
+\item Weights only 1,88kg
+\item Easy to attach Raspberry Pi 3B+ and SunFounder Servodriver onto it
 \end{itemize}
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{photo/autonom}
+\includegraphics[width=0.4\linewidth]{photo/car.jpg}
 \end{figure}
 \end{frame}
 %------------------------------------------------
 \begin{frame}
-\frametitle{Preprocessing Steps}
+\frametitle{Raspberry Pi 3B+ - Part l}
 \begin{itemize}
-\item Drop rows with too much sparse data (nan-values)
-\item Replace nan-values with default values
-\item Replace categorical with numerical features
-\item Select features as input values (x) and the price as output value (y)
-\item Split into training and test data (80/20)
+\item Chosen over NVIDIA's Drive PX for this project, because the weight and power are suiting  better
+\item 1.4GHz CPU to apply the Deep Learning to the captured images
+\item 16GB SanDisk SD-Card storage with Raspian Stretch Lite
+\item Powered through a Powerbank attached onto the RC-Car
+\begin{figure}
+\includegraphics[width=0.4\linewidth]{photo/raspi}
+\end{figure}
 \end{itemize}
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Reviews comparison}
-We can see a correlation between the amount of reviews and the accommodation counts. 
+\frametitle{Raspberry Pi 3B+ - Part ll}
+\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+\column{.45\textwidth} % Left column and width
+\begin{itemize}
+\item For our purpose, we use the Rasp- berry Pi Camera Module 8MP v2.1. It can capture pictures with 1080p and 8-megapixel focus \\
+\item Connector on the Raspberry Pi 3B+ with a 15 Pin Ribbon Cable
+\end{itemize}
+
+\column{.45\textwidth} % Right column and width
+PiCamera Module
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{photo/autonom}
+\includegraphics[width=0.7\linewidth]{photo/camera.jpg}
+\end{figure}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Servodriver}
+From SunFounder, model \textit{PCA9685}
+\begin{itemize}
+\item Cheap price: approximately ~13
+\item Provides Pulse width modulation (PWM) to apply remote steering through the Raspberry Pi 3B+
+\item Powered with 3-5V from the Raspberry Pi 3B+
+\end{itemize}
+\begin{figure}
+\includegraphics[width=0.4\linewidth]{photo/sunfounder.jpeg}
 \end{figure}
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Reviews}
+\frametitle{Cable Management - Part I}
+\begin{block}{Raspberry Pi 3B+ to Servodriver}
+8 Pin's need to be connected. 
 \begin{itemize}
-\item Apartments in total got 50 to 100 review scores and a mean rating of about 9.2 to 9.7 
-\item The same mean rating is also achieved by each district where the apartments are rated between 125 and 300 times 
-\item The mean rating for every district is relatively high (too positive phenomenon)
+\item Ground GND
+\item Power VCC 5 Volt
+\item 2x3 Pin's for the steering and throtteling
 \end{itemize}
+\end{block}
+
+\begin{block}{Servodriver to Servomotor}
+Four Pin's need to be connected. 
+\begin{itemize}
+\item Ground GND
+\item Power VCC 5 Volt
+\item 2 Pin's for the steering and throtteling
+\end{itemize}
+\end{block}
 %
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{photo/autonom}
-\end{figure}
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Calendar}
-\begin{itemize}
-\item In January, only half of the apartments have been occupied
-\item The number of rented apartments were raised until April when a sudden drop of rented apartments appeared 
-\item The occupationrate raised to July and decrease again
-\item The number of rented apartments have increased till December 
-\end{itemize}
+\frametitle{Cable Management - Part ll}
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{photo/autonom}
+\includegraphics[width=0.7\linewidth]{photo/ebene2.pdf}
 \end{figure}
 \end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Accumulated Listig prices}
-\begin{itemize}
-\item Minimum price is 10\$
-\item Maximum price is 1650\$
-\item Average price is 137.94\$
-\item We have 669 unique values for the price among Seattle
-\end{itemize}
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{photo/autonom}
-\end{figure}
-\end{frame}
-
-%------------------------------------------------
 
 %------------------------------------------------
 \section{Software}
@@ -212,102 +226,48 @@ We can see a correlation between the amount of reviews and the accommodation cou
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Natural Language Processing}
-\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
-
-\column{.45\textwidth} % Left column and width
+\frametitle{Software Architecture - Python Files}
+The Donkey Self-Driving Car Project is the basis for our group Project. The Filesystem is: \\
 \begin{itemize}
-\item Regular Expression Tokenizer
-\item Stop Words for English + Seattle + Neighbourhood
-\item Lowercase
-\item WordNetLemmatizer
+\item Management: Start the Webserver
+\item Parts: Controls the single parts, e.g. Camera, Steering, Throttle, ..
+\item Templates: Web Templates for the Webserver
+\item Test: Start the environment without error's
 \end{itemize}
+\end{frame}
 
-\column{.45\textwidth} % Right column and width
+%------------------------------------------------
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Python Tornado Webserver}
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{photo/autonom}
-\end{figure}
-
-\end{columns}
-\end{frame}
-
-%------------------------------------------------
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Linear Regression}
-\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
-
-\column{.45\textwidth} % Left column and width
-\begin{itemize}
-\item Use a Linear function and estimate its parameters
-\item There are different approaches to estimate the parameters
-\item The accuracy of a model can be compared with different loss functions
-\end{itemize}
-
-\column{.45\textwidth} % Right column and width
-The fitted line can mathematically described as:
-\begin{equation}
-Y_i = \beta_0 + \beta_1 X_i + \epsilon_i
-\end{equation}
-
-\end{columns}
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Elastic Net CV}
-A general summary would be that the elastic net is a convex sum of ridge and lasso penalties, so the objective function for a Gaussian error model looks like:
-
-\begin{block}{Mathematically defined}
-\begin{equation}
-\text{Residual MSE}+\alpha \cdot \text{Ridge Penalty}+(1-\alpha)\cdot \text{LASSO Penalty}
-\end{equation}
-\begin{equation}
-1-\alpha)\cdot \text{LASSO Penalty}
-\end{equation}
-for \(\alpha\in[0,1]\). 
-\end{block}
-\end{frame}
-%------------------------------------------------
-\begin{frame}
-\frametitle{Multinomial Naive Bayes}
-\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
-
-\column{.45\textwidth} % Left column and width
-\begin{itemize}
-\item Assumes conditionally independent classes
-\item Probability of observing features \(f_1\)  \\
-through \(f_n\) , given some class \(c\)
-\end{itemize}
-
-\column{.45\textwidth} % Right column and width
-\begin{equation}
-p(f_1,..., f_n|c) = \prod_{i=1}^n p(f_i|c)
-\end{equation}
-This means that when I want to use a Naive Bayes model to classify a new example, the posterior probability is much simpler to work with:
-\begin{equation}
-p(c|f_1,...,f_n) \propto p(c)p(f_1|c)...p(f_n|c)
-\end{equation}
-\end{columns}
-\end{frame}
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{LSTM Neural Network}
-\begin{itemize}
-\item Long Short Term Memory Neural Network is based on the Recurrent Neural Network
-\item It is very well suited for timeseries analysis like the prediction of price
-\item Futher explanation exceeds this presentation
-\end{itemize}
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{photo/autonom}
+\includegraphics[width=0.9\linewidth]{photo/webserver.pdf}
 \end{figure}
 \end{frame}
 
 %------------------------------------------------
+
+\begin{frame}
+\frametitle{Training the model with Unity}
+\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+
+\column{.45\textwidth} % Left column and width
+\begin{itemize}
+\item For capturing enough images, someone from the DonkeyCar community programmed a Unity Game.
+\item Simulator of the real word with lines on the border of the track for the image recognition task
+\end{itemize}
+
+\column{.45\textwidth} % Right column and width
+Snapshot from the Simulation
+\begin{figure}
+\includegraphics[width=0.9\linewidth]{photo/unity}
+\end{figure}
+\end{columns}
+\end{frame}
+%------------------------------------------------
+
 \section{Machine Learning}
 %--------------------------------------------
 \begin{frame}
@@ -403,69 +363,127 @@ We can see clearly the high fluctuation of visitors on a weekly basis, but it is
 \section{Autonomously Driving}
 %------------------------------------------------
 \begin{frame}
-\frametitle{Conclusion}
-\begin{itemize}
-\item We made some suggestions how to apply marketing-mix strategies effectively. The focus was on the Product, Price and Promotion policy which is known from the marketing definition
-\item Lessors could experiment with new trendy words in their description
-\item The number of bedrooms has to be exceeded to five before the entry price increased
+\frametitle{Keras Pilot - Part I}
+The Keras Pilot (\textit{.h5} Format) is stored on the Raspberry Pi. 
 
-\end{itemize}
-\end{frame}
-%---------------------------------------------
-\begin{frame}
-\frametitle{Conclusion}
 \begin{itemize}
-\item From January until July lessor should increase their price but decrease again until November
-\item On Christmas they can Increase their price
-\item It make sense to start the marketing campaign in February to be noticed before the rising customer counts
+\item The image captured with the PiCamera are 160x120x3 Pixels
+\item They pass through the follwing Neural Network
+\item The Output in the last fully connected Layer is \\ (\textit{angle\_out} and \textit{throttle\_out})
 \end{itemize}
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{photo/cnn_table}
+\end{figure}
+
 \end{frame}
 %---------------------------------------------
+
 \begin{frame}
-\frametitle{References}
-For references pleace look in the origin report "How can the effectivness of marketing 'Airbnb Seattle' be improved? - dataset of 2016 
-\end{frame}
-%------------------------------------------------
-\begin{frame}
-\Huge{\centerline{-- The End -- }} 
-\vspace{5mm}
+\frametitle{Keras Pilot - Part ll}
+Connection with the PiCamera Module:
+\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+\column{.45\textwidth} % Left column and width
+\begin{itemize}
+\item We use 20 frames per second (FPS)
+\item We use Tensorflow 1.1.17 for version compatibility
+\item According to that, the car changes 20 times per second the angle
+\item The throttle is fix, because of the space limitation
+\end{itemize}
+
+\column{.45\textwidth} % Right column and width
+
 \begin{center}
-	\includegraphics[width=4cm]{photo/logo}
+	\includegraphics[width=4cm]{photo/autonom}
 \end{center}
+
+\end{columns}
 \end{frame}
 %----------------------------------------------------------------------------------------
 
 \section{Evaluation}
 %------------------------------------------------
 \begin{frame}
-\frametitle{Conclusion}
-\begin{itemize}
-\item We made some suggestions how to apply marketing-mix strategies effectively. The focus was on the Product, Price and Promotion policy which is known from the marketing definition
-\item Lessors could experiment with new trendy words in their description
-\item The number of bedrooms has to be exceeded to five before the entry price increased
+\frametitle{Evaluation - Part l}
+\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+\column{.45\textwidth} % Left column and width
+\begin{block}{Evaluation}
+Even though CNN perform a really good result in the computer vision field, it is still quite hard to decompse the decisions and the filters to understand the blackbox behind. For this reason visualized one decision by plotting the occlusion maps (next page) based on this criterion function
+\end{block}
 
-\end{itemize}
+\column{.45\textwidth} % Right column and width
+The criterion function:
+\begin{equation}
+O_{i,j}= \begin{cases}
+    0,& \text{if } abs(\hat{y}_{i,j} - y) > \epsilon\\
+    1              & \text{otherwise} \end{cases}
+\end{equation}
+\end{columns}
+
 \end{frame}
 %---------------------------------------------
+
+\begin{frame}
+\begin{block}{Evaluation - Part ll: Occlusion maps generated out of the CNN layers from section \textit{Autonomously Driving - Keras Pilot (Part l)}}
+
+\begin{center}
+	\includegraphics[width=5cm]{photo/filter}
+\end{center}
+\begin{center}
+Not interpolated filter and gray with bilinear interpolation
+\end{center}
+
+\begin{center}
+	\includegraphics[width=6cm]{photo/activations}
+\end{center}
+\begin{center}
+Activation features after each Layer of the NN respectively
+\end{center}
+\end{block}
+
+
+\end{frame}
+
+%------------------------------------------------
+
 \begin{frame}
 \frametitle{Conclusion}
-\begin{itemize}
-\item From January until July lessor should increase their price but decrease again until November
-\item On Christmas they can Increase their price
-\item It make sense to start the marketing campaign in February to be noticed before the rising customer counts
-\end{itemize}
+
+\begin{block}{Final Thoughts}
+The project was challenging, but all of us learned a lot during this 2 semester long process of building up this project. While doing this project, Tensorflow 2.0 was released and this changed a lot. We needed to adjust constantly, because the Tech-research is so fast.
+In conclusion, we had a great time and are eager to dive deeper into Deep Learning!
+\end{block}
+
+\begin{block}{Acknowledgement}
+The authors would like to thank Prof Dr. Florian Gallwitz from the University of Applied Science - Georg Simon OHM in Nuremberg.
+\end{block}
+
 \end{frame}
-%---------------------------------------------
+
+%------------------------------------------------
+
 \begin{frame}
 \frametitle{References}
-For references pleace look in the origin report "How can the effectivness of marketing 'Airbnb Seattle' be improved? - dataset of 2016 
+\begin{itemize}
+\item Github: https://github.com/bohniti/it-projekt
+\item Website: https://bohniti.github.io/it-projekt/project/
+\end{itemize}
+
+\begin{block}{Sources}
+All of our sources are listed in the project paper on Github.
+\end{block}
+\begin{center}
+Thanks for listening!
+\end{center}
 \end{frame}
+
 %------------------------------------------------
+
 \begin{frame}
-\Huge{\centerline{-- The End -- }} 
+\Huge{\centerline{The End}} 
 \vspace{5mm}
 \begin{center}
-	\includegraphics[width=4cm]{photo/logo}
+	\includegraphics[width=10cm]{photo/logo}
 \end{center}
 \end{frame}
 %----------------------------------------------------------------------------------------
