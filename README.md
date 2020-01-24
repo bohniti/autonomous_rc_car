@@ -2,7 +2,7 @@
   <div align="center"> 
     <img style="border-bottom:none;" sizes="200px" src="https://upload.wikimedia.org/wikipedia/commons/2/25/TH-Nuernberg-Logo.jpeg">
     <h2>Computer Science IT-Project</h2>
-    <h1>DeepLearning: Autonomous Remote Control Car</h1>
+    <h1>DeepLearning: Autonomously driving Remote Control Car</h1>
   </div>
 </div>
 
@@ -15,6 +15,7 @@ For our group IT-project at the \textit{University of Applied Science Georg Simo
 - Report/Paper as [PDF](https://github.com/bohniti/it-projekt/blob/master/Paper.pdf)
 - Presentation as [PDF](https://github.com/bohniti/it-projekt/blob/master/Presentation.pdf)
 - [Pilot/Model](https://github.com/bohniti/it-projekt/tree/master/driving_car_models/models) 
+- YouTube Video [first drive](https://www.youtube.com/watch?v=VwHTCMuq3xs&feature=emb_title)
 
 ## Getting Started
 
