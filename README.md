@@ -7,14 +7,14 @@
 </div>
 
 ## Abstract
-As our final project we set up a remote control car with a raspberry Pi to drive autonomously
+For our group IT-project at the \textit{University of Applied Science Georg Simon OHM}, we built an autonomously driving remote control car. To accomplish this project, we used the framework DonkeyCar. Supervised learning is the primary component, but we provide related work and projects to compare this project with the state-of-the-art Reinforcement Learning. We explain how to connect the car with the microcontrollers and cables, to do a full reverse-engineering on the project. Every single component will be introduced in an appropriate complexity for non-electrical-engineers.  The neural network is a VGG16-Network, which will be explained with all details and parts to understand the networks' architecture fully. We further provide information about how the car can be driving with the webserver. The Report gives a detailed explanation of the API and the transferred data.
 
 
 ## Content
-
-- [Donkeycar](https://github.com/Mavengence/Autonomous-RCCar-IT-Project-TH.OHM/tree/master/donkeycar) Repository
-- [Car](https://github.com/Mavengence/Autonomous-RCCar-IT-Project-TH.OHM/tree/master/mycar) Repository
 - [Projekt Homepage](https://bohniti.github.io/it-projekt/)
+- Report/Paper as [PDF](https://github.com/bohniti/it-projekt/blob/master/Paper.pdf)
+- Presentation as [PDF](https://github.com/bohniti/it-projekt/blob/master/Presentation.pdf)
+- [Pilot/Model](https://github.com/bohniti/it-projekt/tree/master/driving_car_models/models) 
 
 ## Getting Started
 
